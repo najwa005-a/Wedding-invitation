@@ -3,12 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#eee7dc">
-<title>Mehdi & Mouna — Invitation</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Mehdi & Mouna</title>
 
 <style>
 *{
@@ -17,1176 +13,1104 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    background:#eee8df;
-    color:#5e564e;
-    font-family:"Cormorant Garamond",serif;
     overflow-x:hidden;
+    font-family:Georgia,serif;
+    background:#f5f1eb;
+    color:#665b52;
 }
 
-/* =========================
-   LOADING
-========================= */
-
-#loader{
-    position:fixed;
-    inset:0;
-    background:#eee8df;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-    transition:opacity 1s ease, visibility 1s ease;
-}
-
-.loader-content{
-    text-align:center;
-}
-
-.loader-monogram{
-    font-family:"Great Vibes",cursive;
-    font-size:90px;
-    color:#81776c;
-    animation:fadeIn 1.5s ease;
-}
-
-.loader-text{
-    margin-top:10px;
-    letter-spacing:4px;
-    font-size:11px;
-    text-transform:uppercase;
-}
-
-#loader.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-/* =========================
+/* =====================================================
    ENVELOPE
-========================= */
+===================================================== */
 
 #envelopeScreen{
     position:fixed;
     inset:0;
-    min-height:100svh;
-    background:
-        radial-gradient(circle at 50% 45%,rgba(255,255,255,.65),transparent 35%),
-        #eee8df;
-    z-index:5000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    z-index:9999;
+    background:#e9e4db;
     overflow:hidden;
-    transition:opacity 1.2s ease, visibility 1.2s ease;
+    transition:opacity 1.2s ease;
 }
 
-#envelopeScreen.opened{
+#envelopeScreen.hide{
     opacity:0;
-    visibility:hidden;
     pointer-events:none;
-}
-
-.envelope-wrapper{
-    position:relative;
-    width:min(88vw,430px);
-    height:270px;
-    perspective:1200px;
 }
 
 .envelope{
     position:absolute;
     inset:0;
-    background:#e9dfd1;
-    box-shadow:
-        0 25px 60px rgba(76,64,50,.18),
-        0 5px 15px rgba(76,64,50,.08);
-    border-radius:3px;
+    background:
+        radial-gradient(
+            circle at center,
+            #f5f0e7 0%,
+            #e8dfd3 100%
+        );
 }
 
-/* inside paper */
-
-.letter{
-    position:absolute;
-    width:88%;
-    height:82%;
-    left:6%;
-    bottom:4%;
-    background:#fbf9f5;
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
-    transition:1.4s ease;
-    z-index:1;
-}
-
-.letter-content{
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    opacity:.7;
-}
-
-.letter-content .mini{
-    font-family:"Great Vibes",cursive;
-    font-size:35px;
-}
-
-/* envelope flap */
+/* 4 VOLETS */
 
 .flap{
     position:absolute;
-    left:0;
+    z-index:5;
+    transition:
+        transform 1.5s cubic-bezier(.18,.78,.18,1),
+        opacity 1s ease;
+}
+
+.flap-top{
     top:0;
-    width:0;
-    height:0;
-    border-left:50% solid transparent;
-    border-right:50% solid transparent;
-    border-top:145px solid #eee4d7;
-    z-index:4;
-    transform-origin:top center;
-    transition:1.4s ease;
-    filter:drop-shadow(0 2px 2px rgba(0,0,0,.06));
-}
-
-.envelope-bottom{
-    position:absolute;
-    inset:0;
-    z-index:3;
-    pointer-events:none;
-}
-
-.envelope-bottom:before{
-    content:"";
-    position:absolute;
     left:0;
-    bottom:0;
-    width:0;
-    height:0;
-    border-left:50% solid transparent;
-    border-right:50% solid transparent;
-    border-bottom:150px solid #dfd3c2;
+    width:100%;
+    height:52%;
+    background:
+        linear-gradient(
+            135deg,
+            #f8f4ec,
+            #ded4c6
+        );
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+    transform-origin:top center;
 }
 
-.envelope-bottom:after{
-    content:"";
-    position:absolute;
+.flap-left{
+    top:0;
+    left:0;
+    width:52%;
+    height:100%;
+    background:#e0d6c8;
+    clip-path:
+        polygon(
+            0 0,
+            100% 50%,
+            0 100%
+        );
+    transform-origin:left center;
+}
+
+.flap-right{
+    top:0;
     right:0;
-    bottom:0;
-    width:0;
-    height:0;
-    border-left:50% solid transparent;
-    border-right:50% solid transparent;
-    border-bottom:150px solid #e4d8c8;
+    width:52%;
+    height:100%;
+    background:#e0d6c8;
+    clip-path:
+        polygon(
+            100% 0,
+            0 50%,
+            100% 100%
+        );
+    transform-origin:right center;
 }
 
-/* seal */
+.flap-bottom{
+    bottom:0;
+    left:0;
+    width:100%;
+    height:52%;
+    background:
+        linear-gradient(
+            135deg,
+            #d9cdbd,
+            #eee7dd
+        );
+    clip-path:
+        polygon(
+            0 100%,
+            100% 100%,
+            50% 0
+        );
+    transform-origin:bottom center;
+}
+
+/* SEAL */
 
 .seal{
     position:absolute;
-    width:88px;
-    height:88px;
-    left:50%;
+    z-index:20;
     top:50%;
+    left:50%;
+
+    width:115px;
+    height:115px;
+
     transform:translate(-50%,-50%);
+
     border-radius:50%;
-    background:
-        radial-gradient(circle at 35% 30%,#9c786f,#79534c 55%,#68433d);
-    box-shadow:
-        0 8px 16px rgba(75,50,42,.25),
-        inset 0 3px 4px rgba(255,255,255,.18);
-    z-index:10;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     cursor:pointer;
-    transition:.5s ease;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #b18b80,
+            #825b53 55%,
+            #68443e
+        );
+
+    box-shadow:
+        0 15px 40px rgba(50,35,30,.3),
+        inset 0 2px 7px rgba(255,255,255,.25);
+
+    transition:.6s ease;
 }
 
-.seal:before{
+.seal::before{
     content:"";
     position:absolute;
-    inset:7px;
-    border:1px solid rgba(244,226,205,.6);
+    inset:9px;
     border-radius:50%;
+    border:1px solid #f0dcc8;
 }
 
 .seal span{
-    color:#eadbc7;
-    font-family:"Great Vibes",cursive;
-    font-size:45px;
-    line-height:1;
-    z-index:2;
+    color:#f4dfca;
+    font-family:cursive;
+    font-size:48px;
 }
 
 .seal:hover{
-    transform:translate(-50%,-50%) scale(1.06);
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
 }
 
-/* opening */
-
-.envelope-wrapper.opening .flap{
+.opening .flap-top{
     transform:rotateX(180deg);
 }
 
-.envelope-wrapper.opening .letter{
-    transform:translateY(-190px);
-    z-index:8;
+.opening .flap-bottom{
+    transform:rotateX(-180deg);
 }
 
-.envelope-wrapper.opening .seal{
+.opening .flap-left{
+    transform:rotateY(-25deg);
+    opacity:.1;
+}
+
+.opening .flap-right{
+    transform:rotateY(25deg);
+    opacity:.1;
+}
+
+.opening .seal{
     opacity:0;
-    transform:translate(-50%,-50%) scale(.6);
+    transform:
+        translate(-50%,-50%)
+        scale(.4)
+        rotate(20deg);
 }
 
-.open-instruction{
+
+/* =====================================================
+   SECOND PAGE
+   MOVING VIDEO BACKGROUND
+===================================================== */
+
+#continueScreen{
+    position:fixed;
+    inset:0;
+
+    z-index:8000;
+
+    display:none;
+
+    overflow:hidden;
+
+    background:#090806;
+}
+
+#continueScreen.show{
+    display:block;
+}
+
+#backgroundVideo{
     position:absolute;
-    top:calc(50% + 180px);
+    inset:0;
+
     width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transform:scale(1.06);
+
+    filter:
+        brightness(.55)
+        saturate(.85);
+}
+
+.videoDark{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.45)
+        );
+
+    z-index:1;
+}
+
+
+/* =====================================================
+   ORNATE FRAME
+===================================================== */
+
+.ornateFrame{
+    position:absolute;
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+/* corners */
+
+.corner{
+    position:absolute;
+    width:230px;
+    height:230px;
+
+    border-color:
+        rgba(245,240,230,.9);
+
+    filter:
+        drop-shadow(
+            0 3px 5px rgba(0,0,0,.35)
+        );
+}
+
+.corner::before,
+.corner::after{
+    content:"";
+    position:absolute;
+
+    border:3px solid
+        rgba(245,240,230,.8);
+
+    border-radius:60% 20% 60% 20%;
+}
+
+.corner::before{
+    width:170px;
+    height:80px;
+}
+
+.corner::after{
+    width:80px;
+    height:170px;
+}
+
+.corner.tl{
+    top:0;
+    left:0;
+}
+
+.corner.tl::before{
+    top:25px;
+    left:10px;
+    transform:rotate(15deg);
+}
+
+.corner.tl::after{
+    top:10px;
+    left:25px;
+    transform:rotate(-15deg);
+}
+
+.corner.tr{
+    top:0;
+    right:0;
+    transform:scaleX(-1);
+}
+
+.corner.bl{
+    bottom:0;
+    left:0;
+    transform:scaleY(-1);
+}
+
+.corner.br{
+    bottom:0;
+    right:0;
+    transform:scale(-1);
+}
+
+
+/* =====================================================
+   CENTER
+===================================================== */
+
+.continueContent{
+    position:absolute;
+    inset:0;
+
+    z-index:4;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
     text-align:center;
-    color:#766b61;
-    letter-spacing:3px;
-    font-size:11px;
+
+    color:white;
+}
+
+.monogram{
+    font-family:cursive;
+
+    font-size:
+        clamp(
+            100px,
+            20vw,
+            180px
+        );
+
+    line-height:.8;
+
+    text-shadow:
+        0 3px 20px rgba(0,0,0,.7);
+}
+
+.monogramSmall{
+    font-family:cursive;
+    font-size:30px;
+    margin-top:10px;
+}
+
+.separator{
+    width:100px;
+    height:1px;
+
+    background:
+        rgba(255,255,255,.75);
+
+    margin:
+        30px 0;
+}
+
+.touch{
+    font-size:12px;
+
+    letter-spacing:6px;
+
     text-transform:uppercase;
-    animation:pulse 2s infinite;
+
+    text-shadow:
+        0 2px 10px #000;
 }
 
-@keyframes pulse{
-    0%,100%{opacity:.45}
-    50%{opacity:1}
+.arabic{
+    margin-top:12px;
+
+    font-size:15px;
+
+    text-shadow:
+        0 2px 10px #000;
 }
 
-/* =========================
-   MAIN
-========================= */
+.continueButton{
+    margin-top:35px;
+
+    padding:14px 30px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.7);
+
+    color:white;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(6px);
+
+    transition:.35s;
+}
+
+.continueButton:hover{
+    background:white;
+    color:#65584e;
+}
+
+
+/* =====================================================
+   MAIN INVITATION
+===================================================== */
 
 #main{
-    opacity:0;
-    transition:opacity 1.4s ease;
+    display:none;
 }
 
-#main.visible{
-    opacity:1;
+#main.show{
+    display:block;
 }
 
 section{
-    position:relative;
     min-height:100svh;
-    overflow:hidden;
-}
 
-/* =========================
-   HERO
-========================= */
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:50px 25px;
+}
 
 .hero{
     background:
-        linear-gradient(rgba(247,244,238,.68),rgba(247,244,238,.84)),
-        radial-gradient(circle at 50% 20%,#fff,#e8dfd3);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:40px 20px;
-}
-
-.hero:after{
-    content:"";
-    position:absolute;
-    width:420px;
-    height:420px;
-    border-radius:50%;
-    background:rgba(255,255,255,.35);
-    filter:blur(60px);
-    top:-120px;
-    right:-100px;
-}
-
-.hero-content{
-    position:relative;
-    z-index:3;
-    max-width:500px;
-    animation:heroAppear 2s ease;
+        radial-gradient(
+            circle at center,
+            #fff,
+            #e7ded3
+        );
 }
 
 .bismillah{
-    font-family:"Playfair Display",serif;
     font-size:22px;
-    margin-bottom:55px;
-    color:#71675f;
-}
-
-.ornament{
-    font-size:18px;
-    color:#a49381;
-    letter-spacing:10px;
-    margin-bottom:18px;
-}
-
-.save{
-    font-size:15px;
-    text-transform:uppercase;
-    letter-spacing:6px;
-    margin-bottom:25px;
-    color:#88796c;
+    margin-bottom:40px;
 }
 
 .names{
-    font-family:"Great Vibes",cursive;
-    font-size:clamp(65px,18vw,105px);
-    color:#665b54;
-    line-height:.95;
+    font-family:cursive;
+
+    font-size:
+        clamp(
+            70px,
+            14vw,
+            120px
+        );
+
+    line-height:.75;
+
+    color:#6d6058;
 }
 
-.amp{
-    font-family:"Cormorant Garamond",serif;
-    font-size:35px;
+.and{
+    font-family:Georgia;
+
+    font-size:28px;
+
     font-style:italic;
-    margin:15px 0;
-    color:#9a8977;
+
+    margin:20px 0;
 }
 
 .date{
-    font-family:"Playfair Display",serif;
-    margin-top:35px;
+    margin-top:45px;
+
     font-size:17px;
+
     letter-spacing:2px;
 }
 
 .place{
     margin-top:12px;
-    font-size:16px;
-    letter-spacing:1px;
+
+    font-size:17px;
 }
 
-.scroll{
-    position:absolute;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:3px;
-    opacity:.65;
-}
 
-.scroll:after{
-    content:"";
-    display:block;
-    width:1px;
-    height:35px;
-    background:#9c9185;
-    margin:8px auto 0;
-}
-
-/* =========================
-   INVITATION
-========================= */
+/* =====================================================
+   INVITATION TEXT
+===================================================== */
 
 .invitation{
-    background:#f5f1eb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:80px 25px;
+    background:#faf7f2;
 }
 
-.invitation-content{
-    max-width:650px;
+.content{
+    max-width:700px;
 }
 
-.invitation-title{
-    font-family:"Great Vibes",cursive;
+.title{
+    font-family:cursive;
+
     font-size:70px;
-    color:#71645c;
+
+    color:#70635a;
+
     margin-bottom:30px;
 }
 
-.invitation-text{
-    font-size:21px;
-    line-height:1.7;
-    color:#716861;
+.content p{
+    font-size:20px;
+
+    line-height:1.8;
 }
 
-.monogram{
-    width:100px;
-    height:100px;
-    margin:0 auto 35px;
-    border:1px solid #a99887;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-}
 
-.monogram:before{
-    content:"";
-    position:absolute;
-    inset:7px;
-    border:1px solid #c2b4a5;
-    border-radius:50%;
-}
-
-.monogram span{
-    font-family:"Great Vibes",cursive;
-    font-size:46px;
-    color:#74675f;
-}
-
-/* =========================
+/* =====================================================
    DETAILS
-========================= */
+===================================================== */
 
 .details{
-    min-height:auto;
-    padding:110px 20px;
-    background:#ebe3d8;
-    text-align:center;
-}
+    background:#e9dfd3;
 
-.details-title,
-.location-title{
-    font-family:"Great Vibes",cursive;
-    font-size:70px;
-    color:#6d6058;
-    margin-bottom:50px;
-}
+    display:block;
 
-.detail-grid{
-    max-width:700px;
-    margin:auto;
-    display:grid;
-    gap:35px;
+    padding:
+        100px 20px;
 }
 
 .detail{
-    padding:25px;
+    margin:30px;
 }
 
-.detail-icon{
-    font-size:27px;
-    margin-bottom:10px;
-}
+.label{
+    font-size:11px;
 
-.detail-label{
-    font-size:12px;
-    text-transform:uppercase;
     letter-spacing:4px;
-    color:#958476;
-    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+    color:#948477;
 }
 
-.detail-value{
-    font-family:"Playfair Display",serif;
-    font-size:21px;
-    color:#625850;
+.value{
+    margin-top:9px;
+
+    font-size:20px;
 }
 
-/* =========================
+
+/* =====================================================
    LOCATION
-========================= */
+===================================================== */
 
 .location{
-    background:#f6f3ee;
-    padding:100px 20px;
-    text-align:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    background:#faf7f2;
 }
 
-.location-card{
-    max-width:700px;
-    width:100%;
-}
+.mapButton{
+    display:inline-block;
 
-.location-icon{
-    width:60px;
-    height:60px;
-    border:1px solid #b4a394;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 25px;
-    font-size:25px;
-}
+    margin-top:30px;
 
-.location-address{
-    font-family:"Playfair Display",serif;
-    font-size:22px;
-    margin-bottom:35px;
-}
+    padding:
+        16px 32px;
 
-.map-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px 35px;
-    border:1px solid #958477;
-    color:#675c54;
+    border:
+        1px solid #958477;
+
+    color:#665b52;
+
     text-decoration:none;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
-    font-size:12px;
-    transition:.4s ease;
-    background:rgba(255,255,255,.35);
+
+    font-size:11px;
+
+    transition:.3s;
 }
 
-.map-button:hover{
-    background:#75675e;
-    color:#fff;
+.mapButton:hover{
+    background:#665b52;
+
+    color:white;
 }
 
-/* =========================
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer{
-    min-height:65vh;
-    background:#e8ded2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:50px 20px;
+    background:#e6dcd0;
 }
 
-.footer-content{
-    max-width:600px;
-}
 
-.footer-names{
-    font-family:"Great Vibes",cursive;
-    font-size:75px;
-    color:#6d6058;
-}
+/* =====================================================
+   MOBILE
+===================================================== */
 
-.footer-date{
-    margin-top:25px;
-    font-family:"Playfair Display",serif;
-    letter-spacing:2px;
-}
-
-.footer-message{
-    margin-top:35px;
-    font-size:18px;
-    line-height:1.7;
-}
-
-.footer-line{
-    width:70px;
-    height:1px;
-    background:#a59584;
-    margin:35px auto;
-}
-
-/* =========================
-   MUSIC
-========================= */
-
-.music-button{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    border:1px solid rgba(111,96,84,.5);
-    background:rgba(246,242,235,.88);
-    color:#695d55;
-    z-index:4000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    backdrop-filter:blur(8px);
-}
-
-.music-button.playing{
-    animation:musicPulse 1.5s infinite;
-}
-
-@keyframes musicPulse{
-    0%{box-shadow:0 0 0 0 rgba(120,96,80,.25)}
-    70%{box-shadow:0 0 0 12px rgba(120,96,80,0)}
-    100%{box-shadow:0 0 0 0 rgba(120,96,80,0)}
-}
-
-/* =========================
-   PETALS
-========================= */
-
-.petal{
-    position:fixed;
-    top:-30px;
-    width:10px;
-    height:15px;
-    border-radius:80% 20% 80% 20%;
-    background:rgba(255,255,255,.82);
-    z-index:3000;
-    pointer-events:none;
-    animation:fall linear forwards;
-}
-
-@keyframes fall{
-    0%{
-        transform:translate3d(0,-30px,0) rotate(0deg);
-        opacity:0;
-    }
-    10%{opacity:.9}
-    100%{
-        transform:translate3d(var(--x),110vh,0) rotate(650deg);
-        opacity:0;
-    }
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:translateY(0)}
-}
-
-@keyframes heroAppear{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:600px){
-
-    .envelope-wrapper{
-        width:86vw;
-        height:235px;
-    }
+@media(max-width:700px){
 
     .seal{
-        width:76px;
-        height:76px;
+        width:85px;
+        height:85px;
     }
 
     .seal span{
-        font-size:38px;
+        font-size:36px;
     }
 
-    .open-instruction{
-        top:calc(50% + 155px);
+    .corner{
+        width:150px;
+        height:150px;
     }
 
-    .bismillah{
+    .corner::before{
+        width:115px;
+        height:55px;
+    }
+
+    .corner::after{
+        width:55px;
+        height:115px;
+    }
+
+    .title{
+        font-size:55px;
+    }
+
+    .content p{
         font-size:18px;
-        margin-bottom:40px;
     }
 
-    .names{
-        font-size:72px;
-    }
-
-    .invitation-title,
-    .details-title,
-    .location-title{
-        font-size:58px;
-    }
-
-    .invitation-text{
-        font-size:19px;
-    }
-
-    .footer-names{
-        font-size:60px;
-    }
-}
-
-@media(max-width:380px){
-
-    .envelope-wrapper{
-        height:210px;
-    }
-
-    .open-instruction{
-        top:calc(50% + 140px);
-    }
-
-    .names{
-        font-size:63px;
+    .touch{
+        font-size:10px;
+        letter-spacing:4px;
     }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-monogram">M & M</div>
-        <div class="loader-text">Une invitation à célébrer l'amour</div>
-    </div>
-</div>
 
-<!-- ENVELOPE -->
+<!-- =====================================================
+     ENVELOPE
+===================================================== -->
+
 <div id="envelopeScreen">
 
-    <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope">
 
-        <div class="envelope">
+        <div class="flap flap-top"></div>
 
-            <div class="letter">
-                <div class="letter-content">
-                    <div class="mini">M & M</div>
-                </div>
-            </div>
+        <div class="flap flap-left"></div>
 
-            <div class="flap"></div>
+        <div class="flap flap-right"></div>
 
-            <div class="envelope-bottom"></div>
+        <div class="flap flap-bottom"></div>
 
-            <div class="seal" id="seal">
-                <span>M M</span>
-            </div>
 
-        </div>
-
-        <div class="open-instruction">
-            Touchez le sceau pour ouvrir
+        <div
+            class="seal"
+            id="seal"
+        >
+            <span>M M</span>
         </div>
 
     </div>
 
 </div>
 
-<!-- MAIN SITE -->
+
+
+<!-- =====================================================
+     SECOND SCREEN
+===================================================== -->
+
+<div id="continueScreen">
+
+    <!-- خلفية متحركة -->
+    <video
+        id="backgroundVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+
+        <source
+            src="https://cdn.coverr.co/videos/coverr-white-orchid-7913/1080p.mp4"
+            type="video/mp4"
+        >
+
+    </video>
+
+
+    <div class="videoDark"></div>
+
+
+    <!-- Cadre floral -->
+    <div class="ornateFrame">
+
+        <div class="corner tl"></div>
+
+        <div class="corner tr"></div>
+
+        <div class="corner bl"></div>
+
+        <div class="corner br"></div>
+
+    </div>
+
+
+    <div class="continueContent">
+
+        <div class="monogram">
+            M
+        </div>
+
+        <div class="monogramSmall">
+            & M
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="touch">
+            Touch to continue
+        </div>
+
+        <div class="arabic">
+            اضغط للمتابعة
+        </div>
+
+
+        <button
+            class="continueButton"
+            id="continueButton"
+        >
+            Continuer
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN INVITATION
+===================================================== -->
+
 <main id="main">
 
-    <!-- HERO -->
-    <section class="hero">
 
-        <div class="hero-content">
+<!-- HERO -->
 
-            <div class="bismillah">
-                بسم الله الرحمن الرحيم
+<section class="hero">
+
+    <div>
+
+        <div class="bismillah">
+            بسم الله الرحمن الرحيم
+        </div>
+
+
+        <div class="names">
+
+            Mehdi
+
+            <div class="and">
+                &
             </div>
 
-            <div class="ornament">✦</div>
-
-            <div class="save">
-                Save the Date
-            </div>
-
-            <div class="names">
-                Mehdi
-                <div class="amp">&</div>
-                Mouna
-            </div>
-
-            <div class="date">
-                Vendredi 04 septembre 2026
-            </div>
-
-            <div class="place">
-                Palace Seddouki — Khaima
-            </div>
+            Mouna
 
         </div>
 
-        <div class="scroll">
-            Découvrir
+
+        <div class="date">
+            Vendredi 04 septembre 2026
         </div>
 
-    </section>
 
-
-    <!-- INVITATION -->
-    <section class="invitation">
-
-        <div class="invitation-content">
-
-            <div class="monogram">
-                <span>M & M</span>
-            </div>
-
-            <div class="invitation-title">
-                Notre mariage
-            </div>
-
-            <p class="invitation-text">
-                Avec une immense joie et beaucoup d'émotion,
-                nous avons le plaisir de vous inviter à partager
-                avec nous ce merveilleux jour où deux histoires
-                ne feront plus qu'une.
-            </p>
-
-            <p class="invitation-text" style="margin-top:25px;">
-                Votre présence sera le plus beau des cadeaux.
-            </p>
-
+        <div class="place">
+            Palace Seddouki — Khaima
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- DETAILS -->
-    <section class="details">
 
-        <div class="details-title">
+<!-- INVITATION -->
+
+<section class="invitation">
+
+    <div class="content">
+
+        <div class="title">
+            Notre mariage
+        </div>
+
+
+        <p>
+
+            Avec une immense joie et beaucoup
+            d'émotion, nous avons le plaisir de
+            vous inviter à partager avec nous
+            ce merveilleux jour.
+
+        </p>
+
+
+        <p style="margin-top:20px">
+
+            Votre présence sera le plus beau
+            des cadeaux.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- DETAILS -->
+
+<section class="details">
+
+    <div>
+
+        <div class="title">
             Le grand jour
         </div>
 
-        <div class="detail-grid">
 
-            <div class="detail">
+        <div class="detail">
 
-                <div class="detail-icon">♡</div>
-
-                <div class="detail-label">
-                    Les mariés
-                </div>
-
-                <div class="detail-value">
-                    Mehdi & Mouna
-                </div>
-
+            <div class="label">
+                Les mariés
             </div>
 
-
-            <div class="detail">
-
-                <div class="detail-icon">♢</div>
-
-                <div class="detail-label">
-                    Date
-                </div>
-
-                <div class="detail-value">
-                    Vendredi 04 septembre 2026
-                </div>
-
-            </div>
-
-
-            <div class="detail">
-
-                <div class="detail-icon">◷</div>
-
-                <div class="detail-label">
-                    Heure
-                </div>
-
-                <div class="detail-value">
-                    Début du mariage : 20H
-                </div>
-
-            </div>
-
-
-            <div class="detail">
-
-                <div class="detail-icon">⌖</div>
-
-                <div class="detail-label">
-                    Lieu
-                </div>
-
-                <div class="detail-value">
-                    Palace Seddouki — Khaima
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- LOCATION -->
-    <section class="location">
-
-        <div class="location-card">
-
-            <div class="location-icon">
-                ♧
-            </div>
-
-            <div class="location-title">
-                Location
-            </div>
-
-            <div class="location-address">
-                Palace Seddouki — Khaima
-            </div>
-
-            <a
-                class="map-button"
-                href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Voir la localisation
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <section class="footer">
-
-        <div class="footer-content">
-
-            <div class="footer-names">
+            <div class="value">
                 Mehdi & Mouna
             </div>
 
-            <div class="footer-line"></div>
+        </div>
 
-            <div class="footer-date">
-                04 · 09 · 2026
+
+        <div class="detail">
+
+            <div class="label">
+                Date
             </div>
 
-            <div class="footer-message">
-                Nous avons hâte de célébrer ce jour
-                exceptionnel à vos côtés.
-            </div>
-
-            <div class="footer-line"></div>
-
-            <div>
-                M & M
+            <div class="value">
+                Vendredi 04 septembre 2026
             </div>
 
         </div>
 
-    </section>
+
+        <div class="detail">
+
+            <div class="label">
+                Heure
+            </div>
+
+            <div class="value">
+                Début du mariage : 20H
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                Lieu
+            </div>
+
+            <div class="value">
+                Palace Seddouki — Khaima
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- LOCATION -->
+
+<section class="location">
+
+    <div>
+
+        <div class="title">
+            Location
+        </div>
+
+
+        <div class="place">
+            Palace Seddouki — Khaima
+        </div>
+
+
+        <a
+            class="mapButton"
+            href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
+            target="_blank"
+            rel="noopener"
+        >
+            Voir la localisation
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<section class="footer">
+
+    <div>
+
+        <div class="names">
+            Mehdi & Mouna
+        </div>
+
+        <p style="margin-top:30px">
+            04 · 09 · 2026
+        </p>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
-<!-- MUSIC BUTTON -->
-<button class="music-button" id="musicButton" aria-label="Musique">
-    ♫
-</button>
-
 
 <script>
 
-/* =========================
-   LOADING
-========================= */
+/* =====================================================
+   ENVELOPE
+===================================================== */
 
-window.addEventListener("load", () => {
+const seal =
+document.getElementById("seal");
 
-    setTimeout(() => {
-        document.getElementById("loader").classList.add("hide");
-    }, 1000);
+const envelopeScreen =
+document.getElementById("envelopeScreen");
 
-});
+const envelope =
+document.querySelector(".envelope");
 
+const continueScreen =
+document.getElementById("continueScreen");
 
-/* =========================
-   OPEN ENVELOPE
-========================= */
+const continueButton =
+document.getElementById("continueButton");
 
-const seal = document.getElementById("seal");
-const wrapper = document.getElementById("envelopeWrapper");
-const envelopeScreen = document.getElementById("envelopeScreen");
-const main = document.getElementById("main");
+const video =
+document.getElementById("backgroundVideo");
 
-seal.addEventListener("click", openInvitation);
-
-function openInvitation(){
-
-    wrapper.classList.add("opening");
-
-    createPetals(28);
-
-    setTimeout(() => {
-
-        envelopeScreen.classList.add("opened");
-        main.classList.add("visible");
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }, 1500);
-
-}
+const main =
+document.getElementById("main");
 
 
-/* =========================
-   PETALS
-========================= */
+/* فتح envelope */
 
-function createPetals(number){
+seal.addEventListener(
+    "click",
+    function(){
 
-    for(let i=0;i<number;i++){
-
-        const petal=document.createElement("div");
-
-        petal.className="petal";
-
-        const size=7+Math.random()*8;
-
-        petal.style.width=size+"px";
-        petal.style.height=(size*1.4)+"px";
-        petal.style.left=Math.random()*100+"vw";
-        petal.style.setProperty(
-            "--x",
-            (Math.random()*300-150)+"px"
+        envelope.classList.add(
+            "opening"
         );
 
-        petal.style.animationDuration=
-            (5+Math.random()*6)+"s";
 
-        petal.style.animationDelay=
-            Math.random()*2+"s";
+        setTimeout(
+            function(){
 
-        document.body.appendChild(petal);
+                envelopeScreen.classList.add(
+                    "hide"
+                );
 
-        setTimeout(()=>{
-            petal.remove();
-        },12000);
+
+                continueScreen.classList.add(
+                    "show"
+                );
+
+
+                video.play().catch(
+                    function(){}
+                );
+
+            },
+            1500
+        );
+
     }
-}
+);
 
 
-/* =========================
-   SOFT AMBIENT MUSIC
-========================= */
+/* Touch to continue */
 
-let audioContext=null;
-let musicPlaying=false;
-let interval=null;
+continueButton.addEventListener(
+    "click",
+    function(){
 
-const musicButton=document.getElementById("musicButton");
+        continueScreen.style.opacity =
+            "0";
 
-function startMusic(){
+        continueScreen.style.transition =
+            "opacity 1.2s ease";
 
-    if(!audioContext){
-        audioContext =
-            new (window.AudioContext ||
-            window.webkitAudioContext)();
+
+        setTimeout(
+            function(){
+
+                continueScreen.style.display =
+                    "none";
+
+
+                main.classList.add(
+                    "show"
+                );
+
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            },
+            1200
+        );
+
     }
-
-    if(audioContext.state==="suspended"){
-        audioContext.resume();
-    }
-
-    musicPlaying=true;
-    musicButton.classList.add("playing");
-    musicButton.innerHTML="🔊";
-
-    playNote();
-
-    interval=setInterval(playNote,2200);
-}
-
-function stopMusic(){
-
-    musicPlaying=false;
-    musicButton.classList.remove("playing");
-    musicButton.innerHTML="♫";
-
-    if(interval){
-        clearInterval(interval);
-        interval=null;
-    }
-}
-
-function playNote(){
-
-    if(!audioContext || !musicPlaying) return;
-
-    const notes=[
-        261.63,
-        329.63,
-        392.00,
-        523.25
-    ];
-
-    const osc=audioContext.createOscillator();
-    const gain=audioContext.createGain();
-
-    osc.type="sine";
-
-    osc.frequency.value=
-        notes[Math.floor(Math.random()*notes.length)];
-
-    gain.gain.setValueAtTime(
-        0,
-        audioContext.currentTime
-    );
-
-    gain.gain.linearRampToValueAtTime(
-        0.035,
-        audioContext.currentTime+0.6
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime+2
-    );
-
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
-
-    osc.start();
-    osc.stop(audioContext.currentTime+2);
-}
-
-musicButton.addEventListener("click",()=>{
-
-    if(musicPlaying){
-        stopMusic();
-    }else{
-        startMusic();
-    }
-
-});
-
-
-/* =========================
-   SCROLL PETALS
-========================= */
-
-let lastPetal=0;
-
-window.addEventListener("scroll",()=>{
-
-    const now=Date.now();
-
-    if(now-lastPetal>900){
-
-        if(Math.random()>.55){
-            createPetals(2);
-        }
-
-        lastPetal=now;
-    }
-
-});
+);
 
 </script>
+
 
 </body>
 </html>

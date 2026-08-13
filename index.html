@@ -27,7 +27,6 @@
       color: #62544b;
     }
 
-
     /* ==================================================
        ENVELOPE
     ================================================== */
@@ -37,13 +36,26 @@
       inset: 0;
       z-index: 9999;
       overflow: hidden;
+
       background: #d8c9b7;
-      transition: opacity 1.2s ease;
+
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+
+      transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0s;
     }
 
     #envelopeScreen.hide {
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
+
+      transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0.8s;
     }
 
     .envelope {
@@ -92,15 +104,18 @@
         );
     }
 
-
-    /* الزوايا */
+    /* ==================================================
+       CORNERS
+    ================================================== */
 
     .corner {
       position: absolute;
+
       width: 130px;
       height: 130px;
 
-      border: 1px solid rgba(112, 87, 68, 0.28);
+      border:
+        1px solid rgba(112, 87, 68, 0.28);
 
       z-index: 2;
     }
@@ -108,6 +123,7 @@
     .corner.tl {
       top: 8%;
       left: 8%;
+
       border-right: 0;
       border-bottom: 0;
     }
@@ -115,6 +131,7 @@
     .corner.tr {
       top: 8%;
       right: 8%;
+
       border-left: 0;
       border-bottom: 0;
     }
@@ -122,6 +139,7 @@
     .corner.bl {
       bottom: 8%;
       left: 8%;
+
       border-right: 0;
       border-top: 0;
     }
@@ -129,10 +147,10 @@
     .corner.br {
       bottom: 8%;
       right: 8%;
+
       border-left: 0;
       border-top: 0;
     }
-
 
     /* ==================================================
        ENVELOPE FLAPS
@@ -240,9 +258,8 @@
       );
     }
 
-
     /* ==================================================
-       ENVELOPE OPEN
+       OPENING ANIMATION
     ================================================== */
 
     .opening .flap.top {
@@ -265,7 +282,6 @@
       opacity: 0;
     }
 
-
     /* ==================================================
        WAX SEAL
     ================================================== */
@@ -281,7 +297,8 @@
       width: 125px;
       height: 125px;
 
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
 
       border-radius: 50%;
 
@@ -305,8 +322,11 @@
         inset -6px -8px 14px rgba(30, 15, 10, 0.25);
 
       transition:
-        transform 0.5s ease,
-        opacity 0.7s ease;
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s ease;
+
+      animation:
+        sealPulse 2.5s ease-in-out infinite;
     }
 
     .wax-seal::before {
@@ -317,7 +337,8 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(244, 220, 200, 0.8);
+      border:
+        1px solid rgba(244, 220, 200, 0.8);
     }
 
     .wax-seal::after {
@@ -328,7 +349,8 @@
 
       border-radius: 50%;
 
-      border: 1px dashed rgba(244, 220, 200, 0.4);
+      border:
+        1px dashed rgba(244, 220, 200, 0.4);
     }
 
     .monogram {
@@ -344,35 +366,61 @@
         serif;
 
       font-size: 36px;
+
       font-style: italic;
+
       letter-spacing: -4px;
     }
 
     .wax-seal:hover {
       transform:
         translate(-50%, -50%)
-        scale(1.06);
+        scale(1.07);
     }
 
+    @keyframes sealPulse {
+
+      0%, 100% {
+        box-shadow:
+          0 18px 45px rgba(45, 30, 25, 0.32),
+          inset 3px 4px 12px rgba(255, 255, 255, 0.2),
+          inset -6px -8px 14px rgba(30, 15, 10, 0.25);
+      }
+
+      50% {
+        box-shadow:
+          0 20px 55px rgba(45, 30, 25, 0.42),
+          0 0 25px rgba(185, 145, 130, 0.25),
+          inset 3px 4px 12px rgba(255, 255, 255, 0.2),
+          inset -6px -8px 14px rgba(30, 15, 10, 0.25);
+      }
+
+    }
+
+    /* ==================================================
+       WAX PRESS
+    ================================================== */
+
     .opening .wax-seal {
+      animation: none;
+
       transform:
         translate(-50%, -50%)
-        scale(0.2)
-        rotate(25deg);
+        scale(1.25)
+        rotate(35deg);
 
       opacity: 0;
     }
 
-
     /* ==================================================
-       M&M — REAL GARDEN
+       REAL GARDEN
     ================================================== */
 
     #gardenPage {
       position: fixed;
       inset: 0;
 
-      z-index: 7000;
+      z-index: 10000;
 
       display: none;
 
@@ -414,6 +462,7 @@
       to {
         transform: scale(1.09);
       }
+
     }
 
     .garden-light {
@@ -486,7 +535,8 @@
 
       margin: 30px 0;
 
-      background: rgba(255, 255, 255, 0.9);
+      background:
+        rgba(255, 255, 255, 0.9);
     }
 
     .touch {
@@ -504,13 +554,17 @@
 
       color: white;
 
-      background: rgba(255, 255, 255, 0.1);
+      background:
+        rgba(255, 255, 255, 0.1);
 
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border:
+        1px solid rgba(255, 255, 255, 0.9);
 
       backdrop-filter: blur(7px);
 
-      font-family: Georgia, serif;
+      font-family:
+        Georgia,
+        serif;
 
       font-size: 10px;
 
@@ -527,7 +581,6 @@
       background: white;
       color: #53624f;
     }
-
 
     /* ==================================================
        INVITATION PAGE
@@ -552,7 +605,6 @@
       display: flex;
     }
 
-
     .invitation-bg {
       position: absolute;
 
@@ -562,7 +614,6 @@
       height: 100%;
 
       object-fit: cover;
-
       object-position: center;
 
       z-index: 0;
@@ -580,10 +631,8 @@
       to {
         transform: scale(1.04);
       }
+
     }
-
-
-    /* voile خفيف */
 
     .invitation-overlay {
       position: absolute;
@@ -595,7 +644,6 @@
       background:
         rgba(245, 237, 226, 0.18);
     }
-
 
     /* ==================================================
        LETTER
@@ -751,7 +799,6 @@
       margin-top: 30px;
     }
 
-
     /* ==================================================
        MAP
     ================================================== */
@@ -822,7 +869,8 @@
 
       background: #756055;
 
-      border: 1px solid #756055;
+      border:
+        1px solid #756055;
 
       font-size: 11px;
 
@@ -840,7 +888,6 @@
       background: white;
       color: #756055;
     }
-
 
     /* ==================================================
        FOOTER
@@ -875,7 +922,6 @@
 
       color: #907c6d;
     }
-
 
     /* ==================================================
        MOBILE
@@ -934,11 +980,11 @@
       .map-title {
         font-size: 48px;
       }
+
     }
 
   </style>
 </head>
-
 
 <body>
 
@@ -976,9 +1022,8 @@
   </div>
 
 
-
   <!-- ==================================================
-       2 — M&M / JARDIN RÉEL
+       2 — REAL GARDEN
   ================================================== -->
 
   <div id="gardenPage">
@@ -1020,9 +1065,8 @@
   </div>
 
 
-
   <!-- ==================================================
-       3 — BISMILLAH
+       3 — INVITATION
   ================================================== -->
 
   <section id="invitationPage">
@@ -1034,7 +1078,6 @@
     >
 
     <div class="invitation-overlay"></div>
-
 
     <div class="letter">
 
@@ -1097,7 +1140,6 @@
   </section>
 
 
-
   <!-- ==================================================
        4 — MAP
   ================================================== -->
@@ -1132,7 +1174,6 @@
   </section>
 
 
-
   <!-- ==================================================
        FOOTER
   ================================================== -->
@@ -1152,7 +1193,6 @@
     </div>
 
   </footer>
-
 
 
   <!-- ==================================================
@@ -1181,26 +1221,29 @@
 
 
     /* ==================================================
-       فتح enveloppe
+       WAX SEAL → OUVRIR L'ENVELOPPE
     ================================================== */
 
     waxSeal.addEventListener("click", function () {
 
-      /*
-        مهم:
-        صفحة jardin كتظهر مباشرة مع بداية فتح
-        enveloppe باش ما يكون حتى écran خاوي.
-      */
+      /* منع الضغط عدة مرات */
+      waxSeal.style.pointerEvents = "none";
 
+      /*
+        Garden يظهر مباشرة
+        تحت animation ديال l'enveloppe.
+      */
       gardenPage.classList.add("show");
 
+      /*
+        فتح l'enveloppe.
+      */
       envelope.classList.add("opening");
 
       /*
-        من بعد ما تبدا l'enveloppe كتختفي
-        تدريجياً.
+        من بعد animation ديال l'enveloppe
+        كتختفي الشاشة ديال l'enveloppe.
       */
-
       setTimeout(function () {
 
         envelopeScreen.classList.add("hide");
@@ -1211,10 +1254,13 @@
 
 
     /* ==================================================
-       Continue
+       CONTINUER → INVITATION
     ================================================== */
 
     continueBtn.addEventListener("click", function () {
+
+      /* منع الضغط المتكرر */
+      continueBtn.style.pointerEvents = "none";
 
       gardenPage.style.transition =
         "opacity 1.2s ease";
@@ -1229,6 +1275,8 @@
         gardenPage.style.display = "none";
 
         gardenPage.style.opacity = "1";
+
+        continueBtn.style.pointerEvents = "auto";
 
         invitationPage.classList.add("show");
 

@@ -4,14 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mouna & Mehdi — Wedding Invitation</title>
+<title>Mouna & Mehdi</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
@@ -25,21 +20,21 @@ html,body{
 
 body{
     font-family:Georgia,"Times New Roman",serif;
-    background:#f5f0e8;
-    color:#66584f;
+    background:#f5efe7;
+    color:#65584f;
     overflow-x:hidden;
 }
 
-
-/* =========================
+/* =====================================================
    ENVELOPE
-========================= */
+===================================================== */
 
 #envelopeScreen{
     position:fixed;
     inset:0;
     z-index:9999;
-    background:#ebe5db;
+    background:#e8e0d5;
+    overflow:hidden;
     transition:opacity 1.3s ease;
 }
 
@@ -51,17 +46,13 @@ body{
 .envelope{
     position:absolute;
     inset:0;
-    overflow:hidden;
     background:
         radial-gradient(
             circle at center,
-            #f8f3ea 0%,
-            #e2d8ca 100%
+            #f8f3eb,
+            #ded3c4
         );
 }
-
-
-/* VOLETS */
 
 .flap{
     position:absolute;
@@ -76,21 +67,8 @@ body{
     left:0;
     width:100%;
     height:53%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #faf5ed,
-            #ddd1c1
-        );
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
-
+    background:linear-gradient(145deg,#faf6ee,#ded2c2);
+    clip-path:polygon(0 0,100% 0,50% 100%);
     transform-origin:top center;
 }
 
@@ -100,16 +78,8 @@ body{
     left:0;
     width:53%;
     height:100%;
-
-    background:#ded4c6;
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 50%,
-            0 100%
-        );
-
+    background:#dfd4c5;
+    clip-path:polygon(0 0,100% 50%,0 100%);
     transform-origin:left center;
 }
 
@@ -119,16 +89,8 @@ body{
     right:0;
     width:53%;
     height:100%;
-
-    background:#ded4c6;
-
-    clip-path:
-        polygon(
-            100% 0,
-            0 50%,
-            100% 100%
-        );
-
+    background:#dfd4c5;
+    clip-path:polygon(100% 0,0 50%,100% 100%);
     transform-origin:right center;
 }
 
@@ -138,26 +100,10 @@ body{
     left:0;
     width:100%;
     height:53%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d5c8b8,
-            #eee7dd
-        );
-
-    clip-path:
-        polygon(
-            0 100%,
-            100% 100%,
-            50% 0
-        );
-
+    background:linear-gradient(145deg,#d5c8b8,#eee7dd);
+    clip-path:polygon(0 100%,100% 100%,50% 0);
     transform-origin:bottom center;
 }
-
-
-/* OPEN ANIMATION */
 
 .opening .flap.top{
     transform:rotateX(180deg);
@@ -180,14 +126,13 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    WAX SEAL
-========================= */
+===================================================== */
 
 .seal{
     position:absolute;
     z-index:20;
-
     top:50%;
     left:50%;
 
@@ -207,7 +152,7 @@ body{
     background:
         radial-gradient(
             circle at 30% 25%,
-            #b18b80,
+            #b18a7e,
             #855b52 55%,
             #68443d
         );
@@ -221,16 +166,10 @@ body{
 
 .seal::before{
     content:"";
-
     position:absolute;
-
     inset:9px;
-
     border-radius:50%;
-
-    border:
-        1px solid
-        #f0ddca;
+    border:1px solid #f0ddca;
 }
 
 .seal span{
@@ -239,9 +178,12 @@ body{
     font-size:44px;
 }
 
+.seal:hover{
+    transform:translate(-50%,-50%) scale(1.07);
+}
+
 .opening .seal{
     opacity:0;
-
     transform:
         translate(-50%,-50%)
         scale(.35)
@@ -249,27 +191,23 @@ body{
 }
 
 
-/* =========================
-   SECOND PAGE
-========================= */
+/* =====================================================
+   PAGE CONTINUE
+   SIMPLE / ELEGANT
+===================================================== */
 
 #continueScreen{
-
     position:fixed;
-
     inset:0;
-
     z-index:8000;
-
     display:none;
-
     overflow:hidden;
 
     background:
-        linear-gradient(
-            135deg,
-            #5c5149,
-            #2f2925
+        radial-gradient(
+            circle at center,
+            #75675d,
+            #302a26
         );
 }
 
@@ -278,278 +216,137 @@ body{
 }
 
 
-/* decorative moving background */
+/* خلفية بسيطة بحركة خفيفة */
 
-.movingBackground{
-
+.continueBackground{
     position:absolute;
-
-    inset:-8%;
+    inset:-5%;
 
     background:
-
         radial-gradient(
-            circle at 20% 25%,
-            rgba(235,215,194,.45),
-            transparent 22%
-        ),
-
-        radial-gradient(
-            circle at 80% 30%,
-            rgba(216,190,166,.35),
-            transparent 23%
-        ),
-
-        radial-gradient(
-            circle at 25% 80%,
-            rgba(240,218,196,.3),
+            ellipse at 20% 20%,
+            rgba(236,215,195,.35),
             transparent 25%
         ),
-
+        radial-gradient(
+            ellipse at 80% 75%,
+            rgba(229,205,181,.28),
+            transparent 28%
+        ),
         linear-gradient(
             135deg,
             #75675d,
-            #39312d
+            #38302b
         );
 
     animation:
-        backgroundMove
-        12s
+        slowBackground
+        14s
         ease-in-out
         infinite
         alternate;
 }
 
-@keyframes backgroundMove{
-
-    0%{
+@keyframes slowBackground{
+    from{
         transform:scale(1);
     }
-
-    100%{
-        transform:scale(1.08);
-    }
-}
-
-
-/* fleurs décoratives */
-
-.flower{
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    opacity:.5;
-
-    border-radius:
-        70%
-        30%
-        70%
-        30%;
-
-    border:
-        2px solid
-        rgba(248,239,225,.65);
-
-    filter:
-        blur(.3px)
-        drop-shadow(
-            0 4px 8px rgba(0,0,0,.2)
-        );
-
-    animation:
-        flowerFloat
-        7s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-.flower::before,
-.flower::after{
-    content:"";
-
-    position:absolute;
-
-    border:
-        2px solid
-        rgba(248,239,225,.55);
-
-    border-radius:70% 30%;
-}
-
-.flower::before{
-    width:100px;
-    height:55px;
-    top:30px;
-    left:40px;
-    transform:rotate(40deg);
-}
-
-.flower::after{
-    width:55px;
-    height:100px;
-    top:45px;
-    left:25px;
-    transform:rotate(-30deg);
-}
-
-.flower.one{
-    top:-25px;
-    left:-25px;
-}
-
-.flower.two{
-    top:-25px;
-    right:-25px;
-    transform:rotate(90deg);
-}
-
-.flower.three{
-    bottom:-25px;
-    left:-25px;
-    transform:rotate(-90deg);
-}
-
-.flower.four{
-    bottom:-25px;
-    right:-25px;
-    transform:rotate(180deg);
-}
-
-@keyframes flowerFloat{
-
-    from{
-        transform:
-            translate(0,0)
-            rotate(0deg);
-    }
-
     to{
-        transform:
-            translate(8px,-12px)
-            rotate(4deg);
+        transform:scale(1.06);
     }
 }
-
-
-/* dark overlay */
 
 .continueOverlay{
-
     position:absolute;
-
     inset:0;
 
     background:
         radial-gradient(
-            circle,
-            transparent 15%,
-            rgba(0,0,0,.45) 100%
+            circle at center,
+            transparent 25%,
+            rgba(0,0,0,.42)
         );
 }
 
 
-/* CENTER CONTENT */
+/* CENTER */
 
 .continueContent{
-
     position:absolute;
-
     inset:0;
 
-    z-index:10;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
 
     text-align:center;
 
-    color:#fff;
-
-    padding:25px;
+    color:white;
 }
 
-
-/* MONOGRAM */
-
 .MM{
-
     font-family:
         "Bodoni 72",
         Didot,
         Georgia,
         serif;
 
-    font-size:
-        clamp(
-            75px,
-            15vw,
-            145px
-        );
-
     font-style:italic;
 
-    letter-spacing:-8px;
+    font-size:
+        clamp(80px,16vw,150px);
 
-    color:#f5eee5;
-
-    text-shadow:
-        0 3px 20px rgba(0,0,0,.45);
+    letter-spacing:-7px;
 
     line-height:.8;
+
+    text-shadow:
+        0 4px 25px rgba(0,0,0,.45);
 }
 
+.continueLine{
+    width:90px;
+    height:1px;
 
-/* CONTINUE */
+    background:
+        rgba(255,255,255,.7);
 
-.touchText{
+    margin:30px 0;
+}
 
-    margin-top:38px;
-
+.touch{
     font-size:11px;
-
     letter-spacing:5px;
-
     text-transform:uppercase;
 }
 
-.touchArabic{
-
+.arabic{
     margin-top:10px;
-
     font-size:14px;
 }
 
 .continueButton{
+    margin-top:30px;
 
-    margin-top:28px;
-
-    padding:
-        13px 30px;
+    padding:14px 32px;
 
     background:
         rgba(255,255,255,.08);
 
     border:
         1px solid
-        rgba(255,255,255,.7);
+        rgba(255,255,255,.75);
 
     color:white;
 
-    cursor:pointer;
+    font-size:10px;
 
     letter-spacing:3px;
 
-    font-size:10px;
-
     text-transform:uppercase;
+
+    cursor:pointer;
 
     backdrop-filter:blur(5px);
 
@@ -557,16 +354,14 @@ body{
 }
 
 .continueButton:hover{
-
     background:white;
-
-    color:#64574e;
+    color:#65584f;
 }
 
 
-/* =========================
+/* =====================================================
    MAIN INVITATION
-========================= */
+===================================================== */
 
 #main{
     display:none;
@@ -577,71 +372,140 @@ body{
 }
 
 
-/* MAIN HERO */
+/*
+   الصورة:
+   بدلي الرابط الموجود هنا بصورة ديالك.
+   مثلا:
+   background-image:url("images/photo.jpg");
+*/
 
-.mainPage{
-
+.invitationPage{
     min-height:100svh;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
+
+    padding:60px 20px;
+
+    position:relative;
+
+    background-color:#eee5da;
+
+    /*
+       IMAGE BACKGROUND
+       حطي هنا الصورة ديالك:
+    */
+    background-image:
+        linear-gradient(
+            rgba(245,239,231,.72),
+            rgba(245,239,231,.72)
+        ),
+        url("");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+
+/* الورقة */
+
+.paper{
+    position:relative;
+
+    width:min(720px,92vw);
+
+    min-height:850px;
+
+    padding:
+        75px 55px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
     text-align:center;
 
-    padding:50px 25px;
-
     background:
-
-        radial-gradient(
-            circle at center,
-            #fff,
-            #e8ded2
+        linear-gradient(
+            145deg,
+            #fffdf9,
+            #f5eee5
         );
-}
 
-.invitationBox{
-
-    width:min(700px,90vw);
-
-    padding:
-        55px 30px;
+    box-shadow:
+        0 25px 70px
+        rgba(65,50,40,.22);
 
     border:
         1px solid
-        rgba(130,110,95,.35);
+        rgba(135,112,95,.28);
+}
 
-    box-shadow:
-        0 15px 50px
-        rgba(80,60,45,.12);
+
+/* حواف الورقة */
+
+.paper::before{
+    content:"";
+
+    position:absolute;
+
+    inset:15px;
+
+    border:
+        1px solid
+        rgba(132,108,91,.3);
+
+    pointer-events:none;
+}
+
+
+/* زخرفة صغيرة فقط */
+
+.ornamentTop{
+    font-size:28px;
+
+    color:#9a8170;
+
+    margin-bottom:25px;
+
+    letter-spacing:10px;
+}
+
+.ornamentBottom{
+    font-size:25px;
+
+    color:#9a8170;
+
+    margin-top:35px;
+
+    letter-spacing:8px;
 }
 
 
 /* BISMILLAH */
 
 .bismillah{
+    font-size:22px;
 
-    font-size:21px;
+    color:#716259;
 
-    margin-bottom:30px;
-
-    color:#75675e;
+    margin-bottom:35px;
 }
 
 
-/* SAVE DATE */
+/* SAVE THE DATE */
 
 .saveDate{
-
     font-size:12px;
 
-    letter-spacing:5px;
+    letter-spacing:6px;
 
     text-transform:uppercase;
 
-    color:#9a8778;
+    color:#a08776;
 
     margin-bottom:35px;
 }
@@ -649,24 +513,22 @@ body{
 
 /* NAMES */
 
-.mainNames{
-
+.names{
     font-family:cursive;
 
     font-size:
         clamp(
             65px,
             13vw,
-            110px
+            105px
         );
 
-    color:#6b5d54;
+    line-height:.72;
 
-    line-height:.8;
+    color:#66574e;
 }
 
-.mainAnd{
-
+.and{
     font-family:Georgia;
 
     font-size:27px;
@@ -679,33 +541,48 @@ body{
 
 /* DATE */
 
-.weddingDate{
+.date{
+    margin-top:45px;
 
-    margin-top:40px;
-
-    font-size:19px;
+    font-size:20px;
 
     letter-spacing:3px;
 
-    color:#77685d;
+    color:#75665c;
 }
 
 
-/* PALACE */
+/* PLACE */
 
-.palace{
+.place{
+    margin-top:20px;
 
-    margin-top:18px;
-
-    font-size:19px;
+    font-size:20px;
 
     letter-spacing:1px;
+
+    color:#66584f;
 }
 
 
-/* INVITATION TEXT */
+/* TIME */
+
+.time{
+    margin-top:13px;
+
+    font-size:16px;
+
+    letter-spacing:2px;
+
+    color:#8b7768;
+}
+
+
+/* TEXT */
 
 .inviteText{
+
+    max-width:540px;
 
     margin-top:45px;
 
@@ -719,13 +596,13 @@ body{
 
     line-height:1.9;
 
-    color:#76685f;
+    color:#75685f;
 }
 
 
-/* =========================
-   MAP SECTION
-========================= */
+/* =====================================================
+   MAP
+===================================================== */
 
 .mapSection{
 
@@ -734,63 +611,66 @@ body{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
 
     padding:70px 25px;
 
-    background:#e8ded2;
+    background:
+        linear-gradient(
+            145deg,
+            #e9ded1,
+            #f6f0e8
+        );
 }
 
 .mapContent{
-
     width:min(600px,90vw);
 }
 
 .mapTitle{
-
     font-family:cursive;
 
     font-size:60px;
 
-    color:#706159;
+    color:#6e6057;
 
     margin-bottom:18px;
 }
 
 .mapPlace{
-
     font-size:18px;
 
-    color:#75665c;
+    color:#76685f;
+}
+
+.mapTime{
+    margin-top:12px;
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    color:#978272;
 }
 
 .mapButton{
-
     display:inline-flex;
 
     align-items:center;
-
     justify-content:center;
 
-    gap:10px;
-
-    margin-top:35px;
+    margin-top:32px;
 
     padding:
-        16px 35px;
+        16px 34px;
 
-    text-decoration:none;
+    background:#766156;
 
     color:white;
 
-    background:#756157;
-
-    border:
-        1px solid
-        #756157;
+    text-decoration:none;
 
     letter-spacing:2px;
 
@@ -798,42 +678,38 @@ body{
 
     text-transform:uppercase;
 
-    transition:.35s;
-
     box-shadow:
-        0 8px 25px
+        0 10px 25px
         rgba(80,60,45,.2);
+
+    transition:.35s;
 }
 
 .mapButton:hover{
-
     background:#fff;
-
-    color:#756157;
+    color:#766156;
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer{
 
-    min-height:60svh;
+    min-height:55svh;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
+    align-items:center;
 
     text-align:center;
 
-    background:#f7f2eb;
+    background:#f7f1e9;
 }
 
 .footerNames{
-
     font-family:cursive;
 
     font-size:
@@ -847,7 +723,6 @@ body{
 }
 
 .footerDate{
-
     margin-top:25px;
 
     letter-spacing:3px;
@@ -856,76 +731,54 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
     .seal{
-
         width:85px;
         height:85px;
     }
 
     .seal span{
-
         font-size:35px;
     }
 
-    .MM{
-
-        font-size:90px;
-
-        letter-spacing:-5px;
-    }
-
-    .flower{
-
-        width:105px;
-        height:105px;
-    }
-
-    .flower::before{
-
-        width:70px;
-        height:40px;
-    }
-
-    .flower::after{
-
-        width:40px;
-        height:70px;
-    }
-
-    .invitationBox{
-
-        padding:
-            45px 20px;
+    .paper{
+        min-height:720px;
+        padding:60px 25px;
     }
 
     .bismillah{
-
         font-size:18px;
     }
 
     .saveDate{
-
         font-size:10px;
-
         letter-spacing:4px;
     }
 
-    .inviteText{
+    .names{
+        font-size:70px;
+    }
 
+    .date{
+        font-size:16px;
+    }
+
+    .place{
+        font-size:17px;
+    }
+
+    .inviteText{
         font-size:15px;
     }
 
     .mapTitle{
-
         font-size:50px;
     }
-
 }
 
 </style>
@@ -944,11 +797,8 @@ body{
     <div class="envelope">
 
         <div class="flap top"></div>
-
         <div class="flap left"></div>
-
         <div class="flap right"></div>
-
         <div class="flap bottom"></div>
 
 
@@ -956,11 +806,7 @@ body{
             class="seal"
             id="seal"
         >
-
-            <span>
-                M M
-            </span>
-
+            <span>M M</span>
         </div>
 
     </div>
@@ -970,44 +816,31 @@ body{
 
 
 <!-- =====================================================
-     PAGE AFTER ENVELOPE
+     CONTINUE PAGE
 ===================================================== -->
 
 <div id="continueScreen">
 
-    <div class="movingBackground"></div>
+    <div class="continueBackground"></div>
 
     <div class="continueOverlay"></div>
 
 
-    <!-- 4 floral decorations -->
-
-    <div class="flower one"></div>
-
-    <div class="flower two"></div>
-
-    <div class="flower three"></div>
-
-    <div class="flower four"></div>
-
-
     <div class="continueContent">
-
 
         <div class="MM">
             M & M
         </div>
 
+        <div class="continueLine"></div>
 
-        <div class="touchText">
+        <div class="touch">
             Touch to continue
         </div>
 
-
-        <div class="touchArabic">
+        <div class="arabic">
             اضغط للمتابعة
         </div>
-
 
         <button
             class="continueButton"
@@ -1016,7 +849,6 @@ body{
             Continuer
         </button>
 
-
     </div>
 
 </div>
@@ -1024,38 +856,41 @@ body{
 
 
 <!-- =====================================================
-     MAIN PAGE
+     MAIN INVITATION
 ===================================================== -->
 
 <main id="main">
 
 
-    <!-- INVITATION -->
+    <!-- =========================
+         INVITATION PAPER
+    ========================== -->
 
-    <section class="mainPage">
+    <section class="invitationPage">
 
-        <div class="invitationBox">
+        <div class="paper">
+
+
+            <div class="ornamentTop">
+                ❦
+            </div>
 
 
             <div class="bismillah">
-
                 بسم الله الرحمن الرحيم
-
             </div>
 
 
             <div class="saveDate">
-
                 Save the Date
-
             </div>
 
 
-            <div class="mainNames">
+            <div class="names">
 
                 Mouna
 
-                <div class="mainAnd">
+                <div class="and">
                     &
                 </div>
 
@@ -1064,17 +899,18 @@ body{
             </div>
 
 
-            <div class="weddingDate">
-
+            <div class="date">
                 Septembre / 04 / 2026
-
             </div>
 
 
-            <div class="palace">
-
+            <div class="place">
                 Palace Seddouki
+            </div>
 
+
+            <div class="time">
+                Début du mariage : 20H
             </div>
 
 
@@ -1082,14 +918,19 @@ body{
 
                 Nous avons le plaisir de vous inviter
                 à partager avec nous cette merveilleuse
-                soirée et à célébrer ensemble le début
-                de notre nouvelle histoire.
+                soirée et à célébrer ensemble ce jour
+                si précieux.
 
                 <br><br>
 
-                Votre présence rendra cette journée
-                encore plus précieuse à nos yeux.
+                Votre présence sera pour nous
+                le plus beau des cadeaux.
 
+            </div>
+
+
+            <div class="ornamentBottom">
+                ❦
             </div>
 
 
@@ -1099,7 +940,9 @@ body{
 
 
 
-    <!-- MAPS -->
+    <!-- =========================
+         MAP
+    ========================== -->
 
     <section class="mapSection">
 
@@ -1107,31 +950,27 @@ body{
 
 
             <div class="mapTitle">
-
                 Retrouvez-nous
-
             </div>
 
 
             <div class="mapPlace">
-
                 Palace Seddouki — Khaima
+            </div>
 
+
+            <div class="mapTime">
+                Début du mariage : 20H
             </div>
 
 
             <a
                 class="mapButton"
-
                 href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
-
                 target="_blank"
-
                 rel="noopener noreferrer"
             >
-
                 📍 MAPS · VOIR LA LOCALISATION
-
             </a>
 
 
@@ -1141,23 +980,20 @@ body{
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <section class="footer">
 
         <div>
 
             <div class="footerNames">
-
                 Mouna & Mehdi
-
             </div>
 
-
             <div class="footerDate">
-
                 04 · 09 · 2026
-
             </div>
 
         </div>
@@ -1257,11 +1093,9 @@ continueButton.addEventListener(
                 continueScreen.style.display =
                     "none";
 
-
                 main.classList.add(
                     "show"
                 );
-
 
                 window.scrollTo(
                     0,
@@ -1276,7 +1110,6 @@ continueButton.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>

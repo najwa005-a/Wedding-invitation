@@ -7,6 +7,11 @@
 <title>Mouna & Mehdi</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     margin:0;
     padding:0;
@@ -20,22 +25,26 @@ html,body{
 
 body{
     font-family:Georgia,"Times New Roman",serif;
-    background:#f5efe7;
-    color:#65584f;
+    background:#f4ede4;
+    color:#62544b;
     overflow-x:hidden;
 }
 
+
 /* =====================================================
-   ENVELOPE
+   1 — LUXURY ENVELOPE
 ===================================================== */
 
 #envelopeScreen{
     position:fixed;
     inset:0;
     z-index:9999;
-    background:#e8e0d5;
     overflow:hidden;
-    transition:opacity 1.3s ease;
+
+    background:#d9cbbb;
+
+    transition:
+        opacity 1.2s ease;
 }
 
 #envelopeScreen.hide{
@@ -46,82 +55,257 @@ body{
 .envelope{
     position:absolute;
     inset:0;
+    overflow:hidden;
+
     background:
         radial-gradient(
             circle at center,
-            #f8f3eb,
-            #ded3c4
+            #f7f0e6 0%,
+            #e0d3c2 65%,
+            #cdbca8 100%
         );
 }
 
+
+/* papier luxueux */
+
+.envelope-paper{
+    position:absolute;
+    inset:5%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #faf5ed,
+            #dfd1bf
+        );
+
+    box-shadow:
+        0 35px 90px rgba(55,40,30,.28),
+        inset 0 0 45px rgba(255,255,255,.4);
+}
+
+
+/* texture papier */
+
+.envelope-paper::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    opacity:.15;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 4px,
+            rgba(80,60,40,.045) 5px
+        );
+}
+
+
+/* coins élégants */
+
+.corner{
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border:1px solid
+        rgba(112,87,68,.28);
+
+    z-index:2;
+}
+
+.corner.tl{
+    top:8%;
+    left:8%;
+
+    border-right:0;
+    border-bottom:0;
+}
+
+.corner.tr{
+    top:8%;
+    right:8%;
+
+    border-left:0;
+    border-bottom:0;
+}
+
+.corner.bl{
+    bottom:8%;
+    left:8%;
+
+    border-right:0;
+    border-top:0;
+}
+
+.corner.br{
+    bottom:8%;
+    right:8%;
+
+    border-left:0;
+    border-top:0;
+}
+
+
+/* =====================================================
+   ENVELOPE FLAPS
+===================================================== */
+
 .flap{
     position:absolute;
+
     transition:
-        transform 1.5s cubic-bezier(.18,.78,.18,1),
+        transform 1.65s
+        cubic-bezier(.18,.8,.18,1),
         opacity 1s ease;
 }
 
+
+/* فوق — هي اللي كتتحل */
+
 .flap.top{
-    z-index:5;
+    z-index:8;
+
     top:0;
     left:0;
+
     width:100%;
-    height:53%;
-    background:linear-gradient(145deg,#faf6ee,#ded2c2);
-    clip-path:polygon(0 0,100% 0,50% 100%);
-    transform-origin:top center;
+    height:57%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #faf5ed,
+            #d7c8b6
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin:
+        top center;
 }
+
+
+/* اليسار */
 
 .flap.left{
-    z-index:5;
+    z-index:6;
+
     top:0;
     left:0;
-    width:53%;
+
+    width:54%;
     height:100%;
-    background:#dfd4c5;
-    clip-path:polygon(0 0,100% 50%,0 100%);
-    transform-origin:left center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8ddcf,
+            #cdbca8
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 50%,
+            0 100%
+        );
 }
+
+
+/* اليمين */
 
 .flap.right{
-    z-index:5;
+    z-index:6;
+
     top:0;
     right:0;
-    width:53%;
+
+    width:54%;
     height:100%;
-    background:#dfd4c5;
-    clip-path:polygon(100% 0,0 50%,100% 100%);
-    transform-origin:right center;
+
+    background:
+        linear-gradient(
+            225deg,
+            #e8ddcf,
+            #cdbca8
+        );
+
+    clip-path:
+        polygon(
+            100% 0,
+            0 50%,
+            100% 100%
+        );
 }
+
+
+/* التحت */
 
 .flap.bottom{
-    z-index:6;
+    z-index:7;
+
     bottom:0;
     left:0;
+
     width:100%;
-    height:53%;
-    background:linear-gradient(145deg,#d5c8b8,#eee7dd);
-    clip-path:polygon(0 100%,100% 100%,50% 0);
-    transform-origin:bottom center;
+    height:56%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d0c0ad,
+            #eee6da
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            100% 100%,
+            50% 0
+        );
 }
 
+
+/* =====================================================
+   OPEN
+===================================================== */
+
 .opening .flap.top{
-    transform:rotateX(180deg);
-    opacity:.2;
+    transform:
+        rotateX(180deg);
+
+    opacity:.04;
 }
 
 .opening .flap.bottom{
-    transform:rotateX(-180deg);
+    transform:
+        translateY(100%);
+
     opacity:.15;
 }
 
 .opening .flap.left{
-    transform:rotateY(-25deg);
+    transform:
+        translateX(-45%);
+
     opacity:.1;
 }
 
 .opening .flap.right{
-    transform:rotateY(25deg);
+    transform:
+        translateX(45%);
+
     opacity:.1;
 }
 
@@ -130,215 +314,670 @@ body{
    WAX SEAL
 ===================================================== */
 
-.seal{
+.wax-seal{
     position:absolute;
+
     z-index:20;
+
     top:50%;
     left:50%;
 
-    width:110px;
-    height:110px;
+    width:125px;
+    height:125px;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius:50%;
 
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 
     cursor:pointer;
 
     background:
         radial-gradient(
             circle at 30% 25%,
-            #b18a7e,
-            #855b52 55%,
-            #68443d
+            #ba9386 0%,
+            #895f55 48%,
+            #5d3b36 100%
         );
 
     box-shadow:
-        0 15px 40px rgba(55,40,35,.3),
-        inset 0 2px 7px rgba(255,255,255,.2);
+        0 18px 45px
+        rgba(45,30,25,.32),
 
-    transition:.6s ease;
+        inset 3px 4px 12px
+        rgba(255,255,255,.2),
+
+        inset -6px -8px 14px
+        rgba(30,15,10,.25);
+
+    transition:
+        transform .5s ease,
+        opacity .7s ease;
 }
 
-.seal::before{
+.wax-seal::before{
     content:"";
+
     position:absolute;
-    inset:9px;
+
+    inset:10px;
+
     border-radius:50%;
-    border:1px solid #f0ddca;
+
+    border:
+        1px solid
+        rgba(244,220,200,.8);
 }
 
-.seal span{
-    color:#f5dfca;
-    font-family:cursive;
-    font-size:44px;
-}
+.wax-seal::after{
+    content:"";
 
-.seal:hover{
-    transform:translate(-50%,-50%) scale(1.07);
-}
-
-.opening .seal{
-    opacity:0;
-    transform:
-        translate(-50%,-50%)
-        scale(.35)
-        rotate(20deg);
-}
-
-
-/* =====================================================
-   PAGE CONTINUE
-   SIMPLE / ELEGANT
-===================================================== */
-
-#continueScreen{
-    position:fixed;
-    inset:0;
-    z-index:8000;
-    display:none;
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #75675d,
-            #302a26
-        );
-}
-
-#continueScreen.show{
-    display:block;
-}
-
-
-/* خلفية بسيطة بحركة خفيفة */
-
-.continueBackground{
     position:absolute;
-    inset:-5%;
 
-    background:
-        radial-gradient(
-            ellipse at 20% 20%,
-            rgba(236,215,195,.35),
-            transparent 25%
-        ),
-        radial-gradient(
-            ellipse at 80% 75%,
-            rgba(229,205,181,.28),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            #75675d,
-            #38302b
-        );
+    inset:18px;
 
-    animation:
-        slowBackground
-        14s
-        ease-in-out
-        infinite
-        alternate;
+    border-radius:50%;
+
+    border:
+        1px dashed
+        rgba(244,220,200,.4);
 }
 
-@keyframes slowBackground{
-    from{
-        transform:scale(1);
-    }
-    to{
-        transform:scale(1.06);
-    }
-}
+.monogram{
+    position:relative;
+    z-index:2;
 
-.continueOverlay{
-    position:absolute;
-    inset:0;
+    color:#f4dfcb;
 
-    background:
-        radial-gradient(
-            circle at center,
-            transparent 25%,
-            rgba(0,0,0,.42)
-        );
-}
-
-
-/* CENTER */
-
-.continueContent{
-    position:absolute;
-    inset:0;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    color:white;
-}
-
-.MM{
     font-family:
         "Bodoni 72",
         Didot,
         Georgia,
         serif;
 
+    font-size:37px;
+
     font-style:italic;
 
-    font-size:
-        clamp(80px,16vw,150px);
-
-    letter-spacing:-7px;
-
-    line-height:.8;
+    letter-spacing:-4px;
 
     text-shadow:
-        0 4px 25px rgba(0,0,0,.45);
+        1px 2px 2px
+        rgba(40,20,15,.35);
 }
 
-.continueLine{
+.wax-seal:hover{
+    transform:
+        translate(-50%,-50%)
+        scale(1.06);
+}
+
+.opening .wax-seal{
+    transform:
+        translate(-50%,-50%)
+        scale(.2)
+        rotate(25deg);
+
+    opacity:0;
+}
+
+
+/* =====================================================
+   2 — JARDIN ANIMÉ
+===================================================== */
+
+#gardenPage{
+    position:fixed;
+
+    inset:0;
+
+    z-index:7000;
+
+    display:none;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b9d1c0 0%,
+            #d9e5d5 45%,
+            #819a78 100%
+        );
+}
+
+#gardenPage.show{
+    display:block;
+}
+
+
+/* ciel / lumière */
+
+.garden-sky{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(255,255,245,.9) 0%,
+            rgba(255,255,245,.25) 20%,
+            transparent 48%
+        );
+
+    animation:
+        sunlight 8s ease-in-out infinite alternate;
+}
+
+@keyframes sunlight{
+
+    from{
+        opacity:.65;
+        transform:scale(1);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.08);
+    }
+}
+
+
+/* arbres flous au loin */
+
+.garden-background{
+    position:absolute;
+
+    left:-10%;
+    right:-10%;
+    bottom:22%;
+
+    height:55%;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 60%,
+            #52705a 0 13%,
+            transparent 14%
+        ),
+
+        radial-gradient(
+            ellipse at 30% 45%,
+            #66866b 0 15%,
+            transparent 16%
+        ),
+
+        radial-gradient(
+            ellipse at 48% 55%,
+            #55765d 0 18%,
+            transparent 19%
+        ),
+
+        radial-gradient(
+            ellipse at 67% 40%,
+            #6e8d70 0 16%,
+            transparent 17%
+        ),
+
+        radial-gradient(
+            ellipse at 84% 55%,
+            #4e6d56 0 15%,
+            transparent 16%
+        );
+
+    filter:
+        blur(10px);
+
+    opacity:.85;
+
+    animation:
+        treesMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes treesMove{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:
+            scale(1.04)
+            translateX(-10px);
+    }
+}
+
+
+/* العشب */
+
+.grass{
+    position:absolute;
+
+    left:-5%;
+    right:-5%;
+    bottom:-10%;
+
+    height:48%;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #59765b 28%,
+            #405d46 100%
+        );
+
+    transform:
+        perspective(500px)
+        rotateX(10deg);
+
+    transform-origin:bottom;
+
+    animation:
+        grassMove 7s ease-in-out infinite alternate;
+}
+
+@keyframes grassMove{
+
+    from{
+        transform:
+            perspective(500px)
+            rotateX(10deg)
+            translateX(0);
+    }
+
+    to{
+        transform:
+            perspective(500px)
+            rotateX(10deg)
+            translateX(-12px);
+    }
+}
+
+
+/* =====================================================
+   WHITE FLOWERS
+===================================================== */
+
+.flowers{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+}
+
+
+/* كل وردة */
+
+.flower{
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    animation:
+        flowerSway
+        5s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes flowerSway{
+
+    from{
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            rotate(3deg)
+            translateY(-7px);
+    }
+}
+
+
+/* pétales */
+
+.petal{
+    position:absolute;
+
+    width:25px;
+    height:38px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 70%,
+            #ffffff 0%,
+            #f7f5ee 60%,
+            #e7e5dc 100%
+        );
+
+    border-radius:
+        70% 70% 45% 45%;
+
+    left:28px;
+    top:20px;
+
+    transform-origin:
+        50% 100%;
+
+    box-shadow:
+        0 2px 8px
+        rgba(255,255,255,.35);
+}
+
+.petal.p1{
+    transform:rotate(0deg) translateY(-15px);
+}
+
+.petal.p2{
+    transform:rotate(72deg) translateY(-15px);
+}
+
+.petal.p3{
+    transform:rotate(144deg) translateY(-15px);
+}
+
+.petal.p4{
+    transform:rotate(216deg) translateY(-15px);
+}
+
+.petal.p5{
+    transform:rotate(288deg) translateY(-15px);
+}
+
+
+/* قلب الوردة */
+
+.flower-center{
+    position:absolute;
+
+    left:35px;
+    top:33px;
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e9d49a,
+            #c2a866
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(240,215,140,.5);
+}
+
+
+/* أماكن الورود */
+
+.f1{
+    left:4%;
+    bottom:17%;
+    transform:scale(.75);
+}
+
+.f2{
+    left:16%;
+    bottom:25%;
+    transform:scale(.55);
+
+    animation-delay:-1s;
+}
+
+.f3{
+    left:29%;
+    bottom:13%;
+    transform:scale(.9);
+
+    animation-delay:-2s;
+}
+
+.f4{
+    right:18%;
+    bottom:20%;
+    transform:scale(.65);
+
+    animation-delay:-1.5s;
+}
+
+.f5{
+    right:5%;
+    bottom:15%;
+    transform:scale(.9);
+
+    animation-delay:-3s;
+}
+
+.f6{
+    right:31%;
+    bottom:28%;
+    transform:scale(.45);
+
+    animation-delay:-2.5s;
+}
+
+
+/* =====================================================
+   SMALL WHITE PETALS FLOATING
+===================================================== */
+
+.floating-petals{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+}
+
+.petal-float{
+    position:absolute;
+
+    width:7px;
+    height:12px;
+
+    border-radius:70%;
+
+    background:#fffdf8;
+
+    opacity:.75;
+
+    animation:
+        floatPetal
+        9s
+        linear
+        infinite;
+}
+
+.pf1{
+    left:18%;
+    top:5%;
+    animation-delay:-2s;
+}
+
+.pf2{
+    left:40%;
+    top:18%;
+    animation-delay:-5s;
+}
+
+.pf3{
+    left:67%;
+    top:10%;
+    animation-delay:-1s;
+}
+
+.pf4{
+    left:83%;
+    top:25%;
+    animation-delay:-6s;
+}
+
+.pf5{
+    left:54%;
+    top:35%;
+    animation-delay:-3s;
+}
+
+@keyframes floatPetal{
+
+    0%{
+        transform:
+            translateY(-20px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.75;
+    }
+
+    50%{
+        transform:
+            translateY(40vh)
+            translateX(35px)
+            rotate(180deg);
+    }
+
+    100%{
+        transform:
+            translateY(100vh)
+            translateX(-30px)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   SOFT OVERLAY
+===================================================== */
+
+.garden-overlay{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(30,55,40,.05),
+            rgba(25,45,30,.25)
+        );
+
+    z-index:3;
+}
+
+
+/* =====================================================
+   M&M CONTENT
+===================================================== */
+
+.garden-content{
+    position:absolute;
+
+    inset:0;
+
+    z-index:4;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    color:white;
+
+    text-shadow:
+        0 3px 25px
+        rgba(25,45,30,.5);
+}
+
+.garden-monogram{
+
+    font-family:
+        "Bodoni 72",
+        Didot,
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            90px,
+            18vw,
+            170px
+        );
+
+    font-style:italic;
+
+    letter-spacing:-9px;
+
+    line-height:.75;
+}
+
+.garden-names{
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    letter-spacing:6px;
+}
+
+.garden-line{
+
     width:90px;
+
     height:1px;
 
     background:
-        rgba(255,255,255,.7);
+        rgba(255,255,255,.9);
 
-    margin:30px 0;
+    margin:32px 0;
 }
 
 .touch{
-    font-size:11px;
+
+    font-size:10px;
+
     letter-spacing:5px;
+
     text-transform:uppercase;
 }
 
-.arabic{
-    margin-top:10px;
-    font-size:14px;
-}
+.continue-btn{
 
-.continueButton{
-    margin-top:30px;
+    margin-top:28px;
 
-    padding:14px 32px;
+    padding:14px 34px;
 
     background:
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.10);
 
     border:
         1px solid
-        rgba(255,255,255,.75);
+        rgba(255,255,255,.9);
 
     color:white;
+
+    font-family:Georgia,serif;
 
     font-size:10px;
 
@@ -348,82 +987,100 @@ body{
 
     cursor:pointer;
 
-    backdrop-filter:blur(5px);
+    backdrop-filter:blur(6px);
 
     transition:.35s;
 }
 
-.continueButton:hover{
+.continue-btn:hover{
+
     background:white;
-    color:#65584f;
+
+    color:#52634f;
 }
 
 
 /* =====================================================
-   MAIN INVITATION
+   3 — INVITATION / BISMILLAH
 ===================================================== */
 
-#main{
+#invitationPage{
+
     display:none;
-}
 
-#main.show{
-    display:block;
-}
+    position:relative;
 
-
-/*
-   الصورة:
-   بدلي الرابط الموجود هنا بصورة ديالك.
-   مثلا:
-   background-image:url("images/photo.jpg");
-*/
-
-.invitationPage{
     min-height:100svh;
 
-    display:flex;
-    justify-content:center;
+    padding:70px 20px;
+
     align-items:center;
+    justify-content:center;
 
-    padding:60px 20px;
+    overflow:hidden;
+}
 
-    position:relative;
-
-    background-color:#eee5da;
-
-    /*
-       IMAGE BACKGROUND
-       حطي هنا الصورة ديالك:
-    */
-    background-image:
-        linear-gradient(
-            rgba(245,239,231,.72),
-            rgba(245,239,231,.72)
-        ),
-        url("");
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+#invitationPage.show{
+    display:flex;
 }
 
 
-/* الورقة */
+/* الصورة ديالك فقط هنا */
 
-.paper{
+.invitation-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    z-index:0;
+}
+
+
+/* voile */
+
+.invitation-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    background:
+        rgba(245,237,226,.28);
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter{
+
     position:relative;
+
+    z-index:2;
 
     width:min(720px,92vw);
 
-    min-height:850px;
+    min-height:820px;
 
-    padding:
-        75px 55px;
+    padding:70px 45px;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
@@ -431,263 +1088,251 @@ body{
     background:
         linear-gradient(
             145deg,
-            #fffdf9,
-            #f5eee5
+            rgba(255,252,246,.96),
+            rgba(246,237,226,.94)
         );
 
     box-shadow:
-        0 25px 70px
-        rgba(65,50,40,.22);
+        0 25px 75px
+        rgba(45,35,28,.25);
 
     border:
         1px solid
-        rgba(135,112,95,.28);
+        rgba(130,105,85,.28);
 }
 
+.letter::before{
 
-/* حواف الورقة */
-
-.paper::before{
     content:"";
 
     position:absolute;
 
-    inset:15px;
+    inset:16px;
 
     border:
         1px solid
-        rgba(132,108,91,.3);
+        rgba(130,105,85,.28);
 
     pointer-events:none;
 }
 
+.small-ornament{
 
-/* زخرفة صغيرة فقط */
+    color:#9c8170;
 
-.ornamentTop{
-    font-size:28px;
-
-    color:#9a8170;
-
-    margin-bottom:25px;
-
-    letter-spacing:10px;
-}
-
-.ornamentBottom{
     font-size:25px;
 
-    color:#9a8170;
-
-    margin-top:35px;
-
     letter-spacing:8px;
+
+    margin-bottom:25px;
 }
-
-
-/* BISMILLAH */
 
 .bismillah{
+
     font-size:22px;
 
-    color:#716259;
+    color:#6f6158;
 
-    margin-bottom:35px;
+    margin-bottom:32px;
 }
 
+.save-date{
 
-/* SAVE THE DATE */
-
-.saveDate{
-    font-size:12px;
-
-    letter-spacing:6px;
+    font-size:11px;
 
     text-transform:uppercase;
 
-    color:#a08776;
+    letter-spacing:6px;
+
+    color:#9d8472;
 
     margin-bottom:35px;
 }
 
-
-/* NAMES */
-
 .names{
+
     font-family:cursive;
 
     font-size:
-        clamp(
-            65px,
-            13vw,
-            105px
-        );
+        clamp(65px,13vw,105px);
 
     line-height:.72;
 
-    color:#66574e;
+    color:#65574e;
 }
 
-.and{
-    font-family:Georgia;
+.names .amp{
 
-    font-size:27px;
+    display:block;
+
+    font-family:Georgia,serif;
+
+    font-size:28px;
 
     font-style:italic;
 
     margin:22px 0;
 }
 
-
-/* DATE */
-
 .date{
+
     margin-top:45px;
 
-    font-size:20px;
+    font-size:19px;
 
     letter-spacing:3px;
 
     color:#75665c;
 }
 
-
-/* PLACE */
-
 .place{
-    margin-top:20px;
 
-    font-size:20px;
+    margin-top:18px;
 
-    letter-spacing:1px;
-
-    color:#66584f;
-}
-
-
-/* TIME */
-
-.time{
-    margin-top:13px;
-
-    font-size:16px;
-
-    letter-spacing:2px;
-
-    color:#8b7768;
-}
-
-
-/* TEXT */
-
-.inviteText{
-
-    max-width:540px;
-
-    margin-top:45px;
-
-    padding-top:30px;
-
-    border-top:
-        1px solid
-        rgba(130,110,95,.25);
-
-    font-size:17px;
-
-    line-height:1.9;
-
-    color:#75685f;
-}
-
-
-/* =====================================================
-   MAP
-===================================================== */
-
-.mapSection{
-
-    min-height:65svh;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    padding:70px 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #e9ded1,
-            #f6f0e8
-        );
-}
-
-.mapContent{
-    width:min(600px,90vw);
-}
-
-.mapTitle{
-    font-family:cursive;
-
-    font-size:60px;
-
-    color:#6e6057;
-
-    margin-bottom:18px;
-}
-
-.mapPlace{
     font-size:18px;
 
-    color:#76685f;
+    color:#665950;
 }
 
-.mapTime{
+.time{
+
     margin-top:12px;
 
     font-size:15px;
 
     letter-spacing:2px;
 
-    color:#978272;
+    color:#907a6a;
 }
 
-.mapButton{
-    display:inline-flex;
+.invite-text{
+
+    max-width:520px;
+
+    margin-top:42px;
+
+    padding-top:28px;
+
+    border-top:
+        1px solid
+        rgba(120,95,75,.22);
+
+    font-size:16px;
+
+    line-height:1.9;
+
+    color:#756960;
+}
+
+.bottom-ornament{
+
+    color:#9c8170;
+
+    font-size:23px;
+
+    letter-spacing:8px;
+
+    margin-top:30px;
+}
+
+
+/* =====================================================
+   4 — MAP
+===================================================== */
+
+.map-section{
+
+    min-height:55svh;
+
+    display:flex;
 
     align-items:center;
     justify-content:center;
 
-    margin-top:32px;
+    text-align:center;
 
-    padding:
-        16px 34px;
+    padding:70px 20px;
 
-    background:#766156;
+    background:
+        linear-gradient(
+            145deg,
+            #eee3d6,
+            #f8f2ea
+        );
+}
 
-    color:white;
+.map-inner{
 
-    text-decoration:none;
+    width:min(600px,90vw);
+}
+
+.map-title{
+
+    font-family:cursive;
+
+    font-size:58px;
+
+    color:#6d5e55;
+
+    margin-bottom:20px;
+}
+
+.map-place{
+
+    font-size:18px;
+
+    color:#75665c;
+}
+
+.map-time{
+
+    margin-top:12px;
+
+    font-size:15px;
 
     letter-spacing:2px;
 
+    color:#907b6b;
+}
+
+.map-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-top:32px;
+
+    padding:16px 35px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#756055;
+
+    border:1px solid #756055;
+
     font-size:11px;
+
+    letter-spacing:2px;
 
     text-transform:uppercase;
 
     box-shadow:
         0 10px 25px
-        rgba(80,60,45,.2);
+        rgba(65,50,40,.2);
 
     transition:.35s;
 }
 
-.mapButton:hover{
-    background:#fff;
-    color:#766156;
+.map-button:hover{
+
+    background:white;
+
+    color:#756055;
 }
 
 
@@ -697,37 +1342,36 @@ body{
 
 .footer{
 
-    min-height:55svh;
+    min-height:40svh;
 
     display:flex;
 
-    justify-content:center;
     align-items:center;
+
+    justify-content:center;
 
     text-align:center;
 
-    background:#f7f1e9;
+    background:#f5eee6;
 }
 
-.footerNames{
+.footer-names{
+
     font-family:cursive;
 
     font-size:
-        clamp(
-            60px,
-            12vw,
-            100px
-        );
+        clamp(55px,11vw,95px);
 
-    color:#6d6058;
+    color:#6b5c53;
 }
 
-.footerDate{
-    margin-top:25px;
+.footer-date{
+
+    margin-top:20px;
 
     letter-spacing:3px;
 
-    color:#8d7b6d;
+    color:#907c6d;
 }
 
 
@@ -737,26 +1381,35 @@ body{
 
 @media(max-width:600px){
 
-    .seal{
-        width:85px;
-        height:85px;
+    .envelope-paper{
+        inset:4%;
     }
 
-    .seal span{
-        font-size:35px;
+    .wax-seal{
+        width:90px;
+        height:90px;
     }
 
-    .paper{
+    .monogram{
+        font-size:29px;
+    }
+
+    .garden-names{
+        font-size:12px;
+        letter-spacing:4px;
+    }
+
+    .letter{
         min-height:720px;
-        padding:60px 25px;
+        padding:60px 24px;
     }
 
     .bismillah{
         font-size:18px;
     }
 
-    .saveDate{
-        font-size:10px;
+    .save-date{
+        font-size:9px;
         letter-spacing:4px;
     }
 
@@ -772,12 +1425,12 @@ body{
         font-size:17px;
     }
 
-    .inviteText{
+    .invite-text{
         font-size:15px;
     }
 
-    .mapTitle{
-        font-size:50px;
+    .map-title{
+        font-size:48px;
     }
 }
 
@@ -796,17 +1449,25 @@ body{
 
     <div class="envelope">
 
+        <div class="envelope-paper"></div>
+
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+
         <div class="flap top"></div>
         <div class="flap left"></div>
         <div class="flap right"></div>
         <div class="flap bottom"></div>
 
 
-        <div
-            class="seal"
-            id="seal"
-        >
-            <span>M M</span>
+        <div class="wax-seal" id="waxSeal">
+
+            <div class="monogram">
+                M&M
+            </div>
+
         </div>
 
     </div>
@@ -816,35 +1477,123 @@ body{
 
 
 <!-- =====================================================
-     CONTINUE PAGE
+     PAGE M&M — JARDIN ANIMÉ
 ===================================================== -->
 
-<div id="continueScreen">
-
-    <div class="continueBackground"></div>
-
-    <div class="continueOverlay"></div>
+<div id="gardenPage">
 
 
-    <div class="continueContent">
+    <div class="garden-sky"></div>
 
-        <div class="MM">
+    <div class="garden-background"></div>
+
+    <div class="grass"></div>
+
+
+    <!-- fleurs blanches -->
+
+    <div class="flowers">
+
+
+        <div class="flower f1">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+
+        <div class="flower f2">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+
+        <div class="flower f3">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+
+        <div class="flower f4">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+
+        <div class="flower f5">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+
+        <div class="flower f6">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="flower-center"></div>
+        </div>
+
+    </div>
+
+
+    <!-- pétales flottants -->
+
+    <div class="floating-petals">
+
+        <span class="petal-float pf1"></span>
+        <span class="petal-float pf2"></span>
+        <span class="petal-float pf3"></span>
+        <span class="petal-float pf4"></span>
+        <span class="petal-float pf5"></span>
+
+    </div>
+
+
+    <div class="garden-overlay"></div>
+
+
+    <!-- M&M -->
+
+    <div class="garden-content">
+
+        <div class="garden-monogram">
             M & M
         </div>
 
-        <div class="continueLine"></div>
+        <div class="garden-names">
+            MOUNA & MEHDI
+        </div>
+
+        <div class="garden-line"></div>
 
         <div class="touch">
             Touch to continue
         </div>
 
-        <div class="arabic">
-            اضغط للمتابعة
-        </div>
-
         <button
-            class="continueButton"
-            id="continueButton"
+            class="continue-btn"
+            id="continueBtn"
         >
             Continuer
         </button>
@@ -856,152 +1605,152 @@ body{
 
 
 <!-- =====================================================
-     MAIN INVITATION
+     INVITATION — IMAGE DE TON CHOIX
 ===================================================== -->
 
-<main id="main">
+<section id="invitationPage">
 
 
-    <!-- =========================
-         INVITATION PAPER
-    ========================== -->
+    <!--
+        حطي الصورة ديالك هنا:
 
-    <section class="invitationPage">
+        images/invitation-bg.jpg
+    -->
 
-        <div class="paper">
-
-
-            <div class="ornamentTop">
-                ❦
-            </div>
-
-
-            <div class="bismillah">
-                بسم الله الرحمن الرحيم
-            </div>
+    <img
+        src="images/invitation-bg.jpg"
+        class="invitation-bg"
+        alt=""
+    >
 
 
-            <div class="saveDate">
-                Save the Date
-            </div>
+    <div class="invitation-overlay"></div>
 
 
-            <div class="names">
+    <div class="letter">
 
-                Mouna
-
-                <div class="and">
-                    &
-                </div>
-
-                Mehdi
-
-            </div>
+        <div class="small-ornament">
+            ❦
+        </div>
 
 
-            <div class="date">
-                Septembre / 04 / 2026
-            </div>
+        <div class="bismillah">
+            بسم الله الرحمن الرحيم
+        </div>
 
 
-            <div class="place">
-                Palace Seddouki
-            </div>
+        <div class="save-date">
+            Save the Date
+        </div>
 
 
-            <div class="time">
-                Début du mariage : 20H
-            </div>
+        <div class="names">
 
+            Mouna
 
-            <div class="inviteText">
+            <span class="amp">
+                &
+            </span>
 
-                Nous avons le plaisir de vous inviter
-                à partager avec nous cette merveilleuse
-                soirée et à célébrer ensemble ce jour
-                si précieux.
-
-                <br><br>
-
-                Votre présence sera pour nous
-                le plus beau des cadeaux.
-
-            </div>
-
-
-            <div class="ornamentBottom">
-                ❦
-            </div>
-
+            Mehdi
 
         </div>
 
-    </section>
+
+        <div class="date">
+            Septembre / 04 / 2026
+        </div>
 
 
-
-    <!-- =========================
-         MAP
-    ========================== -->
-
-    <section class="mapSection">
-
-        <div class="mapContent">
+        <div class="place">
+            Palace Seddouki — Khaima
+        </div>
 
 
-            <div class="mapTitle">
-                Retrouvez-nous
-            </div>
+        <div class="time">
+            Début du mariage : 20H
+        </div>
 
 
-            <div class="mapPlace">
-                Palace Seddouki — Khaima
-            </div>
+        <div class="invite-text">
 
+            Nous avons le plaisir de vous inviter
+            à partager avec nous cette merveilleuse
+            soirée et à célébrer ensemble ce jour
+            si précieux.
 
-            <div class="mapTime">
-                Début du mariage : 20H
-            </div>
+            <br><br>
 
-
-            <a
-                class="mapButton"
-                href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                📍 MAPS · VOIR LA LOCALISATION
-            </a>
-
+            Votre présence sera pour nous
+            le plus beau des cadeaux.
 
         </div>
 
-    </section>
 
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <section class="footer">
-
-        <div>
-
-            <div class="footerNames">
-                Mouna & Mehdi
-            </div>
-
-            <div class="footerDate">
-                04 · 09 · 2026
-            </div>
-
+        <div class="bottom-ornament">
+            ❦
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-</main>
+
+<!-- =====================================================
+     MAP — UNIQUEMENT EN BAS
+===================================================== -->
+
+<section class="map-section">
+
+    <div class="map-inner">
+
+        <div class="map-title">
+            Retrouvez-nous
+        </div>
+
+        <div class="map-place">
+            Palace Seddouki — Khaima
+        </div>
+
+        <div class="map-time">
+            Début du mariage : 20H
+        </div>
+
+        <a
+            href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="map-button"
+        >
+            📍 MAPS · VOIR LA LOCALISATION
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <div class="footer-names">
+            Mouna & Mehdi
+        </div>
+
+        <div class="footer-date">
+            04 · 09 · 2026
+        </div>
+
+    </div>
+
+</footer>
 
 
 
@@ -1011,61 +1760,44 @@ body{
    ELEMENTS
 ===================================================== */
 
-const seal =
-    document.getElementById("seal");
+const waxSeal =
+    document.getElementById("waxSeal");
 
 const envelopeScreen =
-    document.getElementById(
-        "envelopeScreen"
-    );
+    document.getElementById("envelopeScreen");
 
 const envelope =
-    document.querySelector(
-        ".envelope"
-    );
+    document.querySelector(".envelope");
 
-const continueScreen =
-    document.getElementById(
-        "continueScreen"
-    );
+const gardenPage =
+    document.getElementById("gardenPage");
 
-const continueButton =
-    document.getElementById(
-        "continueButton"
-    );
+const continueBtn =
+    document.getElementById("continueBtn");
 
-const main =
-    document.getElementById(
-        "main"
-    );
+const invitationPage =
+    document.getElementById("invitationPage");
 
 
 /* =====================================================
    OPEN ENVELOPE
 ===================================================== */
 
-seal.addEventListener(
+waxSeal.addEventListener(
     "click",
-    function(){
+    () => {
 
-        envelope.classList.add(
-            "opening"
-        );
-
+        envelope.classList.add("opening");
 
         setTimeout(
-            function(){
+            () => {
 
-                envelopeScreen.classList.add(
-                    "hide"
-                );
+                envelopeScreen.classList.add("hide");
 
-                continueScreen.classList.add(
-                    "show"
-                );
+                gardenPage.classList.add("show");
 
             },
-            1500
+            1550
         );
 
     }
@@ -1073,27 +1805,27 @@ seal.addEventListener(
 
 
 /* =====================================================
-   CONTINUE
+   CONTINUE → INVITATION
 ===================================================== */
 
-continueButton.addEventListener(
+continueBtn.addEventListener(
     "click",
-    function(){
+    () => {
 
-        continueScreen.style.opacity =
-            "0";
-
-        continueScreen.style.transition =
+        gardenPage.style.transition =
             "opacity 1.2s ease";
+
+        gardenPage.style.opacity =
+            "0";
 
 
         setTimeout(
-            function(){
+            () => {
 
-                continueScreen.style.display =
+                gardenPage.style.display =
                     "none";
 
-                main.classList.add(
+                invitationPage.classList.add(
                     "show"
                 );
 

@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mehdi & Mouna</title>
+<title>Mouna & Mehdi — Wedding Invitation</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -19,23 +24,23 @@ html,body{
 }
 
 body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:#f5f0e8;
+    color:#66584f;
     overflow-x:hidden;
-    font-family:Georgia,serif;
-    background:#f5f1eb;
-    color:#665b52;
 }
 
-/* =====================================================
+
+/* =========================
    ENVELOPE
-===================================================== */
+========================= */
 
 #envelopeScreen{
     position:fixed;
     inset:0;
     z-index:9999;
-    background:#e9e4db;
-    overflow:hidden;
-    transition:opacity 1.2s ease;
+    background:#ebe5db;
+    transition:opacity 1.3s ease;
 }
 
 #envelopeScreen.hide{
@@ -46,104 +51,148 @@ body{
 .envelope{
     position:absolute;
     inset:0;
+    overflow:hidden;
     background:
         radial-gradient(
             circle at center,
-            #f5f0e7 0%,
-            #e8dfd3 100%
+            #f8f3ea 0%,
+            #e2d8ca 100%
         );
 }
 
-/* 4 VOLETS */
+
+/* VOLETS */
 
 .flap{
     position:absolute;
-    z-index:5;
     transition:
         transform 1.5s cubic-bezier(.18,.78,.18,1),
         opacity 1s ease;
 }
 
-.flap-top{
+.flap.top{
+    z-index:5;
     top:0;
     left:0;
     width:100%;
-    height:52%;
+    height:53%;
+
     background:
         linear-gradient(
-            135deg,
-            #f8f4ec,
-            #ded4c6
+            145deg,
+            #faf5ed,
+            #ddd1c1
         );
+
     clip-path:
         polygon(
             0 0,
             100% 0,
             50% 100%
         );
+
     transform-origin:top center;
 }
 
-.flap-left{
+.flap.left{
+    z-index:5;
     top:0;
     left:0;
-    width:52%;
+    width:53%;
     height:100%;
-    background:#e0d6c8;
+
+    background:#ded4c6;
+
     clip-path:
         polygon(
             0 0,
             100% 50%,
             0 100%
         );
+
     transform-origin:left center;
 }
 
-.flap-right{
+.flap.right{
+    z-index:5;
     top:0;
     right:0;
-    width:52%;
+    width:53%;
     height:100%;
-    background:#e0d6c8;
+
+    background:#ded4c6;
+
     clip-path:
         polygon(
             100% 0,
             0 50%,
             100% 100%
         );
+
     transform-origin:right center;
 }
 
-.flap-bottom{
+.flap.bottom{
+    z-index:6;
     bottom:0;
     left:0;
     width:100%;
-    height:52%;
+    height:53%;
+
     background:
         linear-gradient(
-            135deg,
-            #d9cdbd,
+            145deg,
+            #d5c8b8,
             #eee7dd
         );
+
     clip-path:
         polygon(
             0 100%,
             100% 100%,
             50% 0
         );
+
     transform-origin:bottom center;
 }
 
-/* SEAL */
+
+/* OPEN ANIMATION */
+
+.opening .flap.top{
+    transform:rotateX(180deg);
+    opacity:.2;
+}
+
+.opening .flap.bottom{
+    transform:rotateX(-180deg);
+    opacity:.15;
+}
+
+.opening .flap.left{
+    transform:rotateY(-25deg);
+    opacity:.1;
+}
+
+.opening .flap.right{
+    transform:rotateY(25deg);
+    opacity:.1;
+}
+
+
+/* =========================
+   WAX SEAL
+========================= */
 
 .seal{
     position:absolute;
     z-index:20;
+
     top:50%;
     left:50%;
 
-    width:115px;
-    height:115px;
+    width:110px;
+    height:110px;
 
     transform:translate(-50%,-50%);
 
@@ -159,71 +208,55 @@ body{
         radial-gradient(
             circle at 30% 25%,
             #b18b80,
-            #825b53 55%,
-            #68443e
+            #855b52 55%,
+            #68443d
         );
 
     box-shadow:
-        0 15px 40px rgba(50,35,30,.3),
-        inset 0 2px 7px rgba(255,255,255,.25);
+        0 15px 40px rgba(55,40,35,.3),
+        inset 0 2px 7px rgba(255,255,255,.2);
 
     transition:.6s ease;
 }
 
 .seal::before{
     content:"";
+
     position:absolute;
+
     inset:9px;
+
     border-radius:50%;
-    border:1px solid #f0dcc8;
+
+    border:
+        1px solid
+        #f0ddca;
 }
 
 .seal span{
-    color:#f4dfca;
+    color:#f5dfca;
     font-family:cursive;
-    font-size:48px;
-}
-
-.seal:hover{
-    transform:
-        translate(-50%,-50%)
-        scale(1.08);
-}
-
-.opening .flap-top{
-    transform:rotateX(180deg);
-}
-
-.opening .flap-bottom{
-    transform:rotateX(-180deg);
-}
-
-.opening .flap-left{
-    transform:rotateY(-25deg);
-    opacity:.1;
-}
-
-.opening .flap-right{
-    transform:rotateY(25deg);
-    opacity:.1;
+    font-size:44px;
 }
 
 .opening .seal{
     opacity:0;
+
     transform:
         translate(-50%,-50%)
-        scale(.4)
+        scale(.35)
         rotate(20deg);
 }
 
 
-/* =====================================================
+/* =========================
    SECOND PAGE
-   MOVING VIDEO BACKGROUND
-===================================================== */
+========================= */
 
 #continueScreen{
+
     position:fixed;
+
     inset:0;
 
     z-index:8000;
@@ -232,207 +265,274 @@ body{
 
     overflow:hidden;
 
-    background:#090806;
+    background:
+        linear-gradient(
+            135deg,
+            #5c5149,
+            #2f2925
+        );
 }
 
 #continueScreen.show{
     display:block;
 }
 
-#backgroundVideo{
+
+/* decorative moving background */
+
+.movingBackground{
+
     position:absolute;
-    inset:0;
 
-    width:100%;
-    height:100%;
+    inset:-8%;
 
-    object-fit:cover;
+    background:
 
-    transform:scale(1.06);
+        radial-gradient(
+            circle at 20% 25%,
+            rgba(235,215,194,.45),
+            transparent 22%
+        ),
 
-    filter:
-        brightness(.55)
-        saturate(.85);
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(216,190,166,.35),
+            transparent 23%
+        ),
+
+        radial-gradient(
+            circle at 25% 80%,
+            rgba(240,218,196,.3),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #75675d,
+            #39312d
+        );
+
+    animation:
+        backgroundMove
+        12s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-.videoDark{
+@keyframes backgroundMove{
+
+    0%{
+        transform:scale(1);
+    }
+
+    100%{
+        transform:scale(1.08);
+    }
+}
+
+
+/* fleurs décoratives */
+
+.flower{
     position:absolute;
+
+    width:150px;
+    height:150px;
+
+    opacity:.5;
+
+    border-radius:
+        70%
+        30%
+        70%
+        30%;
+
+    border:
+        2px solid
+        rgba(248,239,225,.65);
+
+    filter:
+        blur(.3px)
+        drop-shadow(
+            0 4px 8px rgba(0,0,0,.2)
+        );
+
+    animation:
+        flowerFloat
+        7s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.flower::before,
+.flower::after{
+    content:"";
+
+    position:absolute;
+
+    border:
+        2px solid
+        rgba(248,239,225,.55);
+
+    border-radius:70% 30%;
+}
+
+.flower::before{
+    width:100px;
+    height:55px;
+    top:30px;
+    left:40px;
+    transform:rotate(40deg);
+}
+
+.flower::after{
+    width:55px;
+    height:100px;
+    top:45px;
+    left:25px;
+    transform:rotate(-30deg);
+}
+
+.flower.one{
+    top:-25px;
+    left:-25px;
+}
+
+.flower.two{
+    top:-25px;
+    right:-25px;
+    transform:rotate(90deg);
+}
+
+.flower.three{
+    bottom:-25px;
+    left:-25px;
+    transform:rotate(-90deg);
+}
+
+.flower.four{
+    bottom:-25px;
+    right:-25px;
+    transform:rotate(180deg);
+}
+
+@keyframes flowerFloat{
+
+    from{
+        transform:
+            translate(0,0)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translate(8px,-12px)
+            rotate(4deg);
+    }
+}
+
+
+/* dark overlay */
+
+.continueOverlay{
+
+    position:absolute;
+
     inset:0;
 
     background:
-        linear-gradient(
-            rgba(0,0,0,.15),
-            rgba(0,0,0,.45)
-        );
-
-    z-index:1;
-}
-
-
-/* =====================================================
-   ORNATE FRAME
-===================================================== */
-
-.ornateFrame{
-    position:absolute;
-    inset:0;
-
-    z-index:2;
-
-    pointer-events:none;
-}
-
-/* corners */
-
-.corner{
-    position:absolute;
-    width:230px;
-    height:230px;
-
-    border-color:
-        rgba(245,240,230,.9);
-
-    filter:
-        drop-shadow(
-            0 3px 5px rgba(0,0,0,.35)
+        radial-gradient(
+            circle,
+            transparent 15%,
+            rgba(0,0,0,.45) 100%
         );
 }
 
-.corner::before,
-.corner::after{
-    content:"";
-    position:absolute;
 
-    border:3px solid
-        rgba(245,240,230,.8);
-
-    border-radius:60% 20% 60% 20%;
-}
-
-.corner::before{
-    width:170px;
-    height:80px;
-}
-
-.corner::after{
-    width:80px;
-    height:170px;
-}
-
-.corner.tl{
-    top:0;
-    left:0;
-}
-
-.corner.tl::before{
-    top:25px;
-    left:10px;
-    transform:rotate(15deg);
-}
-
-.corner.tl::after{
-    top:10px;
-    left:25px;
-    transform:rotate(-15deg);
-}
-
-.corner.tr{
-    top:0;
-    right:0;
-    transform:scaleX(-1);
-}
-
-.corner.bl{
-    bottom:0;
-    left:0;
-    transform:scaleY(-1);
-}
-
-.corner.br{
-    bottom:0;
-    right:0;
-    transform:scale(-1);
-}
-
-
-/* =====================================================
-   CENTER
-===================================================== */
+/* CENTER CONTENT */
 
 .continueContent{
+
     position:absolute;
+
     inset:0;
 
-    z-index:4;
+    z-index:10;
 
     display:flex;
+
     flex-direction:column;
 
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
 
-    color:white;
+    color:#fff;
+
+    padding:25px;
 }
 
-.monogram{
-    font-family:cursive;
+
+/* MONOGRAM */
+
+.MM{
+
+    font-family:
+        "Bodoni 72",
+        Didot,
+        Georgia,
+        serif;
 
     font-size:
         clamp(
-            100px,
-            20vw,
-            180px
+            75px,
+            15vw,
+            145px
         );
 
-    line-height:.8;
+    font-style:italic;
+
+    letter-spacing:-8px;
+
+    color:#f5eee5;
 
     text-shadow:
-        0 3px 20px rgba(0,0,0,.7);
+        0 3px 20px rgba(0,0,0,.45);
+
+    line-height:.8;
 }
 
-.monogramSmall{
-    font-family:cursive;
-    font-size:30px;
-    margin-top:10px;
-}
 
-.separator{
-    width:100px;
-    height:1px;
+/* CONTINUE */
 
-    background:
-        rgba(255,255,255,.75);
+.touchText{
 
-    margin:
-        30px 0;
-}
+    margin-top:38px;
 
-.touch{
-    font-size:12px;
+    font-size:11px;
 
-    letter-spacing:6px;
+    letter-spacing:5px;
 
     text-transform:uppercase;
-
-    text-shadow:
-        0 2px 10px #000;
 }
 
-.arabic{
-    margin-top:12px;
+.touchArabic{
 
-    font-size:15px;
+    margin-top:10px;
 
-    text-shadow:
-        0 2px 10px #000;
+    font-size:14px;
 }
 
 .continueButton{
-    margin-top:35px;
 
-    padding:14px 30px;
+    margin-top:28px;
+
+    padding:
+        13px 30px;
 
     background:
         rgba(255,255,255,.08);
@@ -443,28 +543,30 @@ body{
 
     color:white;
 
-    font-size:11px;
+    cursor:pointer;
 
     letter-spacing:3px;
 
+    font-size:10px;
+
     text-transform:uppercase;
 
-    cursor:pointer;
-
-    backdrop-filter:blur(6px);
+    backdrop-filter:blur(5px);
 
     transition:.35s;
 }
 
 .continueButton:hover{
+
     background:white;
-    color:#65584e;
+
+    color:#64574e;
 }
 
 
-/* =====================================================
+/* =========================
    MAIN INVITATION
-===================================================== */
+========================= */
 
 #main{
     display:none;
@@ -474,227 +576,358 @@ body{
     display:block;
 }
 
-section{
+
+/* MAIN HERO */
+
+.mainPage{
+
     min-height:100svh;
 
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
 
     padding:50px 25px;
-}
 
-.hero{
     background:
+
         radial-gradient(
             circle at center,
             #fff,
-            #e7ded3
+            #e8ded2
         );
 }
 
-.bismillah{
-    font-size:22px;
-    margin-bottom:40px;
+.invitationBox{
+
+    width:min(700px,90vw);
+
+    padding:
+        55px 30px;
+
+    border:
+        1px solid
+        rgba(130,110,95,.35);
+
+    box-shadow:
+        0 15px 50px
+        rgba(80,60,45,.12);
 }
 
-.names{
+
+/* BISMILLAH */
+
+.bismillah{
+
+    font-size:21px;
+
+    margin-bottom:30px;
+
+    color:#75675e;
+}
+
+
+/* SAVE DATE */
+
+.saveDate{
+
+    font-size:12px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    color:#9a8778;
+
+    margin-bottom:35px;
+}
+
+
+/* NAMES */
+
+.mainNames{
+
     font-family:cursive;
 
     font-size:
         clamp(
-            70px,
-            14vw,
-            120px
+            65px,
+            13vw,
+            110px
         );
 
-    line-height:.75;
+    color:#6b5d54;
+
+    line-height:.8;
+}
+
+.mainAnd{
+
+    font-family:Georgia;
+
+    font-size:27px;
+
+    font-style:italic;
+
+    margin:22px 0;
+}
+
+
+/* DATE */
+
+.weddingDate{
+
+    margin-top:40px;
+
+    font-size:19px;
+
+    letter-spacing:3px;
+
+    color:#77685d;
+}
+
+
+/* PALACE */
+
+.palace{
+
+    margin-top:18px;
+
+    font-size:19px;
+
+    letter-spacing:1px;
+}
+
+
+/* INVITATION TEXT */
+
+.inviteText{
+
+    margin-top:45px;
+
+    padding-top:30px;
+
+    border-top:
+        1px solid
+        rgba(130,110,95,.25);
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#76685f;
+}
+
+
+/* =========================
+   MAP SECTION
+========================= */
+
+.mapSection{
+
+    min-height:65svh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:70px 25px;
+
+    background:#e8ded2;
+}
+
+.mapContent{
+
+    width:min(600px,90vw);
+}
+
+.mapTitle{
+
+    font-family:cursive;
+
+    font-size:60px;
+
+    color:#706159;
+
+    margin-bottom:18px;
+}
+
+.mapPlace{
+
+    font-size:18px;
+
+    color:#75665c;
+}
+
+.mapButton{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:35px;
+
+    padding:
+        16px 35px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#756157;
+
+    border:
+        1px solid
+        #756157;
+
+    letter-spacing:2px;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    transition:.35s;
+
+    box-shadow:
+        0 8px 25px
+        rgba(80,60,45,.2);
+}
+
+.mapButton:hover{
+
+    background:#fff;
+
+    color:#756157;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    min-height:60svh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:#f7f2eb;
+}
+
+.footerNames{
+
+    font-family:cursive;
+
+    font-size:
+        clamp(
+            60px,
+            12vw,
+            100px
+        );
 
     color:#6d6058;
 }
 
-.and{
-    font-family:Georgia;
+.footerDate{
 
-    font-size:28px;
+    margin-top:25px;
 
-    font-style:italic;
+    letter-spacing:3px;
 
-    margin:20px 0;
-}
-
-.date{
-    margin-top:45px;
-
-    font-size:17px;
-
-    letter-spacing:2px;
-}
-
-.place{
-    margin-top:12px;
-
-    font-size:17px;
+    color:#8d7b6d;
 }
 
 
-/* =====================================================
-   INVITATION TEXT
-===================================================== */
-
-.invitation{
-    background:#faf7f2;
-}
-
-.content{
-    max-width:700px;
-}
-
-.title{
-    font-family:cursive;
-
-    font-size:70px;
-
-    color:#70635a;
-
-    margin-bottom:30px;
-}
-
-.content p{
-    font-size:20px;
-
-    line-height:1.8;
-}
-
-
-/* =====================================================
-   DETAILS
-===================================================== */
-
-.details{
-    background:#e9dfd3;
-
-    display:block;
-
-    padding:
-        100px 20px;
-}
-
-.detail{
-    margin:30px;
-}
-
-.label{
-    font-size:11px;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    color:#948477;
-}
-
-.value{
-    margin-top:9px;
-
-    font-size:20px;
-}
-
-
-/* =====================================================
-   LOCATION
-===================================================== */
-
-.location{
-    background:#faf7f2;
-}
-
-.mapButton{
-    display:inline-block;
-
-    margin-top:30px;
-
-    padding:
-        16px 32px;
-
-    border:
-        1px solid #958477;
-
-    color:#665b52;
-
-    text-decoration:none;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-    font-size:11px;
-
-    transition:.3s;
-}
-
-.mapButton:hover{
-    background:#665b52;
-
-    color:white;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer{
-    background:#e6dcd0;
-}
-
-
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
     .seal{
+
         width:85px;
         height:85px;
     }
 
     .seal span{
-        font-size:36px;
+
+        font-size:35px;
     }
 
-    .corner{
-        width:150px;
-        height:150px;
+    .MM{
+
+        font-size:90px;
+
+        letter-spacing:-5px;
     }
 
-    .corner::before{
-        width:115px;
-        height:55px;
+    .flower{
+
+        width:105px;
+        height:105px;
     }
 
-    .corner::after{
-        width:55px;
-        height:115px;
+    .flower::before{
+
+        width:70px;
+        height:40px;
     }
 
-    .title{
-        font-size:55px;
+    .flower::after{
+
+        width:40px;
+        height:70px;
     }
 
-    .content p{
+    .invitationBox{
+
+        padding:
+            45px 20px;
+    }
+
+    .bismillah{
+
         font-size:18px;
     }
 
-    .touch{
+    .saveDate{
+
         font-size:10px;
+
         letter-spacing:4px;
     }
+
+    .inviteText{
+
+        font-size:15px;
+    }
+
+    .mapTitle{
+
+        font-size:50px;
+    }
+
 }
+
 </style>
 </head>
 
@@ -710,20 +943,24 @@ section{
 
     <div class="envelope">
 
-        <div class="flap flap-top"></div>
+        <div class="flap top"></div>
 
-        <div class="flap flap-left"></div>
+        <div class="flap left"></div>
 
-        <div class="flap flap-right"></div>
+        <div class="flap right"></div>
 
-        <div class="flap flap-bottom"></div>
+        <div class="flap bottom"></div>
 
 
         <div
             class="seal"
             id="seal"
         >
-            <span>M M</span>
+
+            <span>
+                M M
+            </span>
+
         </div>
 
     </div>
@@ -733,62 +970,41 @@ section{
 
 
 <!-- =====================================================
-     SECOND SCREEN
+     PAGE AFTER ENVELOPE
 ===================================================== -->
 
 <div id="continueScreen">
 
-    <!-- خلفية متحركة -->
-    <video
-        id="backgroundVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-    >
+    <div class="movingBackground"></div>
 
-        <source
-            src="https://cdn.coverr.co/videos/coverr-white-orchid-7913/1080p.mp4"
-            type="video/mp4"
-        >
-
-    </video>
+    <div class="continueOverlay"></div>
 
 
-    <div class="videoDark"></div>
+    <!-- 4 floral decorations -->
 
+    <div class="flower one"></div>
 
-    <!-- Cadre floral -->
-    <div class="ornateFrame">
+    <div class="flower two"></div>
 
-        <div class="corner tl"></div>
+    <div class="flower three"></div>
 
-        <div class="corner tr"></div>
-
-        <div class="corner bl"></div>
-
-        <div class="corner br"></div>
-
-    </div>
+    <div class="flower four"></div>
 
 
     <div class="continueContent">
 
-        <div class="monogram">
-            M
+
+        <div class="MM">
+            M & M
         </div>
 
-        <div class="monogramSmall">
-            & M
-        </div>
 
-        <div class="separator"></div>
-
-        <div class="touch">
+        <div class="touchText">
             Touch to continue
         </div>
 
-        <div class="arabic">
+
+        <div class="touchArabic">
             اضغط للمتابعة
         </div>
 
@@ -800,6 +1016,7 @@ section{
             Continuer
         </button>
 
+
     </div>
 
 </div>
@@ -807,201 +1024,145 @@ section{
 
 
 <!-- =====================================================
-     MAIN INVITATION
+     MAIN PAGE
 ===================================================== -->
 
 <main id="main">
 
 
-<!-- HERO -->
+    <!-- INVITATION -->
 
-<section class="hero">
+    <section class="mainPage">
 
-    <div>
-
-        <div class="bismillah">
-            بسم الله الرحمن الرحيم
-        </div>
+        <div class="invitationBox">
 
 
-        <div class="names">
+            <div class="bismillah">
 
-            Mehdi
+                بسم الله الرحمن الرحيم
 
-            <div class="and">
-                &
             </div>
 
-            Mouna
 
-        </div>
+            <div class="saveDate">
 
+                Save the Date
 
-        <div class="date">
-            Vendredi 04 septembre 2026
-        </div>
-
-
-        <div class="place">
-            Palace Seddouki — Khaima
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- INVITATION -->
-
-<section class="invitation">
-
-    <div class="content">
-
-        <div class="title">
-            Notre mariage
-        </div>
-
-
-        <p>
-
-            Avec une immense joie et beaucoup
-            d'émotion, nous avons le plaisir de
-            vous inviter à partager avec nous
-            ce merveilleux jour.
-
-        </p>
-
-
-        <p style="margin-top:20px">
-
-            Votre présence sera le plus beau
-            des cadeaux.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- DETAILS -->
-
-<section class="details">
-
-    <div>
-
-        <div class="title">
-            Le grand jour
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                Les mariés
             </div>
 
-            <div class="value">
-                Mehdi & Mouna
+
+            <div class="mainNames">
+
+                Mouna
+
+                <div class="mainAnd">
+                    &
+                </div>
+
+                Mehdi
+
             </div>
+
+
+            <div class="weddingDate">
+
+                Septembre / 04 / 2026
+
+            </div>
+
+
+            <div class="palace">
+
+                Palace Seddouki
+
+            </div>
+
+
+            <div class="inviteText">
+
+                Nous avons le plaisir de vous inviter
+                à partager avec nous cette merveilleuse
+                soirée et à célébrer ensemble le début
+                de notre nouvelle histoire.
+
+                <br><br>
+
+                Votre présence rendra cette journée
+                encore plus précieuse à nos yeux.
+
+            </div>
+
 
         </div>
 
+    </section>
 
-        <div class="detail">
 
-            <div class="label">
-                Date
+
+    <!-- MAPS -->
+
+    <section class="mapSection">
+
+        <div class="mapContent">
+
+
+            <div class="mapTitle">
+
+                Retrouvez-nous
+
             </div>
 
-            <div class="value">
-                Vendredi 04 septembre 2026
-            </div>
 
-        </div>
+            <div class="mapPlace">
 
-
-        <div class="detail">
-
-            <div class="label">
-                Heure
-            </div>
-
-            <div class="value">
-                Début du mariage : 20H
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                Lieu
-            </div>
-
-            <div class="value">
                 Palace Seddouki — Khaima
+
+            </div>
+
+
+            <a
+                class="mapButton"
+
+                href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
+
+                target="_blank"
+
+                rel="noopener noreferrer"
+            >
+
+                📍 MAPS · VOIR LA LOCALISATION
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <section class="footer">
+
+        <div>
+
+            <div class="footerNames">
+
+                Mouna & Mehdi
+
+            </div>
+
+
+            <div class="footerDate">
+
+                04 · 09 · 2026
+
             </div>
 
         </div>
 
-    </div>
-
-</section>
-
-
-
-<!-- LOCATION -->
-
-<section class="location">
-
-    <div>
-
-        <div class="title">
-            Location
-        </div>
-
-
-        <div class="place">
-            Palace Seddouki — Khaima
-        </div>
-
-
-        <a
-            class="mapButton"
-            href="https://maps.app.goo.gl/iRwzvHC8bSMratSp6?g_st=ic"
-            target="_blank"
-            rel="noopener"
-        >
-            Voir la localisation
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- FOOTER -->
-
-<section class="footer">
-
-    <div>
-
-        <div class="names">
-            Mehdi & Mouna
-        </div>
-
-        <p style="margin-top:30px">
-            04 · 09 · 2026
-        </p>
-
-    </div>
-
-</section>
+    </section>
 
 
 </main>
@@ -1011,32 +1172,41 @@ section{
 <script>
 
 /* =====================================================
-   ENVELOPE
+   ELEMENTS
 ===================================================== */
 
 const seal =
-document.getElementById("seal");
+    document.getElementById("seal");
 
 const envelopeScreen =
-document.getElementById("envelopeScreen");
+    document.getElementById(
+        "envelopeScreen"
+    );
 
 const envelope =
-document.querySelector(".envelope");
+    document.querySelector(
+        ".envelope"
+    );
 
 const continueScreen =
-document.getElementById("continueScreen");
+    document.getElementById(
+        "continueScreen"
+    );
 
 const continueButton =
-document.getElementById("continueButton");
-
-const video =
-document.getElementById("backgroundVideo");
+    document.getElementById(
+        "continueButton"
+    );
 
 const main =
-document.getElementById("main");
+    document.getElementById(
+        "main"
+    );
 
 
-/* فتح envelope */
+/* =====================================================
+   OPEN ENVELOPE
+===================================================== */
 
 seal.addEventListener(
     "click",
@@ -1054,14 +1224,8 @@ seal.addEventListener(
                     "hide"
                 );
 
-
                 continueScreen.classList.add(
                     "show"
-                );
-
-
-                video.play().catch(
-                    function(){}
                 );
 
             },
@@ -1072,7 +1236,9 @@ seal.addEventListener(
 );
 
 
-/* Touch to continue */
+/* =====================================================
+   CONTINUE
+===================================================== */
 
 continueButton.addEventListener(
     "click",

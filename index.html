@@ -27,7 +27,6 @@
       color: #62544b;
     }
 
-
     /* ==================================================
        ENVELOPE
     ================================================== */
@@ -80,7 +79,6 @@
       content: "";
       position: absolute;
       inset: 0;
-
       opacity: 0.15;
 
       background:
@@ -92,8 +90,9 @@
         );
     }
 
-
-    /* الزوايا */
+    /* ==================================================
+       CORNERS
+    ================================================== */
 
     .corner {
       position: absolute;
@@ -132,7 +131,6 @@
       border-left: 0;
       border-top: 0;
     }
-
 
     /* ==================================================
        ENVELOPE FLAPS
@@ -240,9 +238,8 @@
       );
     }
 
-
     /* ==================================================
-       ENVELOPE OPEN
+       OPENING ANIMATION
     ================================================== */
 
     .opening .flap.top {
@@ -264,7 +261,6 @@
       transform: translateY(100%);
       opacity: 0;
     }
-
 
     /* ==================================================
        WAX SEAL
@@ -305,8 +301,11 @@
         inset -6px -8px 14px rgba(30, 15, 10, 0.25);
 
       transition:
-        transform 0.5s ease,
-        opacity 0.7s ease;
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s ease;
+
+      animation:
+        sealPulse 2.5s ease-in-out infinite;
     }
 
     .wax-seal::before {
@@ -351,28 +350,49 @@
     .wax-seal:hover {
       transform:
         translate(-50%, -50%)
-        scale(1.06);
+        scale(1.07);
     }
 
+    @keyframes sealPulse {
+
+      0%, 100% {
+        box-shadow:
+          0 18px 45px rgba(45, 30, 25, 0.32),
+          inset 3px 4px 12px rgba(255, 255, 255, 0.2),
+          inset -6px -8px 14px rgba(30, 15, 10, 0.25);
+      }
+
+      50% {
+        box-shadow:
+          0 20px 55px rgba(45, 30, 25, 0.42),
+          0 0 25px rgba(185, 145, 130, 0.25),
+          inset 3px 4px 12px rgba(255, 255, 255, 0.2),
+          inset -6px -8px 14px rgba(30, 15, 10, 0.25);
+      }
+    }
+
+    /* Wax عند الضغط */
+
     .opening .wax-seal {
+      animation: none;
+
       transform:
         translate(-50%, -50%)
-        scale(0.2)
-        rotate(25deg);
+        scale(1.25)
+        rotate(35deg);
 
       opacity: 0;
     }
 
-
     /* ==================================================
-       M&M — REAL GARDEN
+       REAL GARDEN
     ================================================== */
 
     #gardenPage {
       position: fixed;
       inset: 0;
 
-      z-index: 7000;
+      z-index: 10000;
 
       display: none;
 
@@ -528,7 +548,6 @@
       color: #53624f;
     }
 
-
     /* ==================================================
        INVITATION PAGE
     ================================================== */
@@ -551,7 +570,6 @@
     #invitationPage.show {
       display: flex;
     }
-
 
     .invitation-bg {
       position: absolute;
@@ -582,9 +600,6 @@
       }
     }
 
-
-    /* voile خفيف */
-
     .invitation-overlay {
       position: absolute;
 
@@ -595,7 +610,6 @@
       background:
         rgba(245, 237, 226, 0.18);
     }
-
 
     /* ==================================================
        LETTER
@@ -751,7 +765,6 @@
       margin-top: 30px;
     }
 
-
     /* ==================================================
        MAP
     ================================================== */
@@ -841,7 +854,6 @@
       color: #756055;
     }
 
-
     /* ==================================================
        FOOTER
     ================================================== */
@@ -875,7 +887,6 @@
 
       color: #907c6d;
     }
-
 
     /* ==================================================
        MOBILE
@@ -939,9 +950,7 @@
   </style>
 </head>
 
-
 <body>
-
 
   <!-- ==================================================
        1 — ENVELOPE
@@ -976,9 +985,8 @@
   </div>
 
 
-
   <!-- ==================================================
-       2 — M&M / JARDIN RÉEL
+       2 — REAL GARDEN
   ================================================== -->
 
   <div id="gardenPage">
@@ -1020,9 +1028,8 @@
   </div>
 
 
-
   <!-- ==================================================
-       3 — BISMILLAH
+       3 — INVITATION
   ================================================== -->
 
   <section id="invitationPage">
@@ -1034,7 +1041,6 @@
     >
 
     <div class="invitation-overlay"></div>
-
 
     <div class="letter">
 
@@ -1097,7 +1103,6 @@
   </section>
 
 
-
   <!-- ==================================================
        4 — MAP
   ================================================== -->
@@ -1132,7 +1137,6 @@
   </section>
 
 
-
   <!-- ==================================================
        FOOTER
   ================================================== -->
@@ -1152,7 +1156,6 @@
     </div>
 
   </footer>
-
 
 
   <!-- ==================================================
@@ -1181,37 +1184,40 @@
 
 
     /* ==================================================
-       فتح enveloppe
+       WAX SEAL → OUVRIR L'ENVELOPPE
     ================================================== */
 
     waxSeal.addEventListener("click", function () {
 
-      /*
-        مهم:
-        صفحة jardin كتظهر مباشرة مع بداية فتح
-        enveloppe باش ما يكون حتى écran خاوي.
-      */
+      /* منع الضغط عدة مرات */
+      waxSeal.style.pointerEvents = "none";
 
+      /*
+        Le jardin devient disponible immédiatement
+        pour éviter tout écran vide.
+      */
       gardenPage.classList.add("show");
 
+      /*
+        L'enveloppe commence son ouverture.
+      */
       envelope.classList.add("opening");
 
       /*
-        من بعد ما تبدا l'enveloppe كتختفي
-        تدريجياً.
+        Après l'animation,
+        l'écran de l'enveloppe disparaît.
       */
-
       setTimeout(function () {
 
         envelopeScreen.classList.add("hide");
 
-      }, 1000);
+      }, 1200);
 
     });
 
 
     /* ==================================================
-       Continue
+       CONTINUER → INVITATION
     ================================================== */
 
     continueBtn.addEventListener("click", function () {

@@ -553,7 +553,6 @@
     }
 
 
-
     .invitation-bg {
       position: absolute;
 
@@ -984,14 +983,6 @@
 
   <div id="gardenPage">
 
-    <!--
-      حط صورة حقيقية ديال jardin هنا:
-
-      jardin.jpg
-
-      خاصها تكون فـنفس dossier ديال index.html
-    -->
-
     <img
       src="ja.JPG"
       class="real-garden"
@@ -1035,12 +1026,6 @@
   ================================================== -->
 
   <section id="invitationPage">
-
-    <!--
-      =================================================
-      غير بدلي src هنا بالصورة ديالك
-      =================================================
-    -->
 
     <img
       src="b.JPG"
@@ -1195,24 +1180,39 @@
       document.getElementById("invitationPage");
 
 
-    /* فتح enveloppe */
+    /* ==================================================
+       فتح enveloppe
+    ================================================== */
 
     waxSeal.addEventListener("click", function () {
 
+      /*
+        مهم:
+        صفحة jardin كتظهر مباشرة مع بداية فتح
+        enveloppe باش ما يكون حتى écran خاوي.
+      */
+
+      gardenPage.classList.add("show");
+
       envelope.classList.add("opening");
+
+      /*
+        من بعد ما تبدا l'enveloppe كتختفي
+        تدريجياً.
+      */
 
       setTimeout(function () {
 
         envelopeScreen.classList.add("hide");
 
-        gardenPage.classList.add("show");
-
-      }, 1500);
+      }, 1000);
 
     });
 
 
-    /* Continue */
+    /* ==================================================
+       Continue
+    ================================================== */
 
     continueBtn.addEventListener("click", function () {
 
